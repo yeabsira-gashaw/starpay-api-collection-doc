@@ -27,25 +27,20 @@
                 "pages": ["index"]
               },
               {
-                "group": "Organize",
+                "group": "Api Reference",
                 "icon": "map",
                 "pages": [
                   {
-                    "group": "Global settings",
-                    "root": "organize/settings",
+                    "group": "Api Reference",
+                    "root": "api/introduction",
                     "pages": [
-                      "organize/settings-appearance",
-                      "organize/settings-structure",
-                      "organize/settings-api",
-                      "organize/settings-integrations",
-                      "organize/settings-seo",
-                      "organize/settings-reference"
+                      "api-reference/introduction",
+                      "api-reference/endpoint/transaction",
+                      "api-reference/endpoint/verification",
+                      "api-reference/test-numbers",
+                      "api-reference/sign"
                     ]
-                  },
-                  "organize/navigation",
-                  "organize/pages",
-                  "organize/hidden-pages",
-                  "organize/mintignore"
+                  }
                 ]
               }
             ]
