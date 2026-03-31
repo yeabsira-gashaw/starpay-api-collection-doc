@@ -5,40 +5,23 @@ mode: "frame"
 keywords: ["overview", "platform", "getting started", "features"]
 ---
 
-export const HeroCard = ({
-  title,
-  description,
-  href,
-}) => {
+export const HeroCard = ({ filename, title, description, href }) => {
   return (
-    <a
-      href={href}
-      className="group relative block rounded-2xl p-6 overflow-hidden
-                 bg-[gray]/20 dark:bg-zinc-900
-                 border border-gray-200 dark:border-zinc-700
-                 transition-all duration-300 hover:shadow-lg min-h-[180px]"
-    >
-      {/* Background Image */}
+    <a className="group bg-[black] cursor-pointer pb-8" href={href}>
       <img
-        src="/images/pattern.png"
-        alt="background pattern"
-        className="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none"
+        src={`https://mintlify.s3.us-west-1.amazonaws.com/mintlify/images/hero/${filename}.png`}
+        className="block dark:hidden pointer-events-none group-hover:scale-105 transition-all duration-100"
       />
-
-      {/* Content */}
-      <div className="relative z-10 flex items-start gap-4">
-        <div>
-          <h3 className="text-3xl font-semibold text-gray-900 dark:text-white">
-            {title}
-          </h3>
-          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-            {description}
-          </p>
-        </div>
-      </div>
+      <img
+        src={`https://mintlify.s3.us-west-1.amazonaws.com/mintlify/images/hero/${filename}-dark.png`}
+        className="pointer-events-none group-hover:scale-105 transition-all duration-100 hidden dark:block"
+      />
+      <h3 className="mt-5 text-gray-900 dark:text-zinc-50 font-medium">
+        {title}
+      </h3>
+      <span className="mt-1.5">{description}</span>
     </a>
-
-);
+  );
 };
 
 <div className="relative">
