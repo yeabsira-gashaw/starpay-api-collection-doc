@@ -5,103 +5,14 @@ mode: "frame"
 keywords: ["overview", "platform", "getting started", "features"]
 ---
 
-export const HeroCard = ({
-  title,
-  description,
-  href,
-  icon,
-}) => {
-  return (
-    <a
-      href={href}
-      className={`group relative block rounded-2xl p-6 overflow-hidden
-                 bg-[gray]/20 dark:bg-zinc-900
-                 border border-gray-200 dark:border-zinc-700
-                 transition-all duration-300 hover:shadow-lg min-h-[180px]`}
+# Starpay documentation
 
-    >
-      {/* Background Pattern */}
-      <div
-        className={`absolute inset-0 pointer-events-none
-                   bg-[url('/images/pattern.png')]
-                   bg-cover bg-center
-                   opacity-30`}
-      />
+Meet the next generation of documentation. AI-native, beautiful out-of-the-box, and built for developers and teams.
 
-      {/* Glow Effect */}
-      <div
-        className={`absolute inset-0 bg-gradient-to-r
-                   from-emerald-500/10 to-transparent
-                   dark:from-emerald-400/20
-                   opacity-0 group-hover:opacity-100
-                   transition duration-300 pointer-events-none`}
-      />
+<Card title="Introduction" icon="book-open" href="/api-reference/introduction">
+  Learn how Starpay works and how this documentation is structured.
+</Card>
 
-      {/* Content */}
-      <div className="relative z-10 flex items-start gap-4">
-
-        {/* Icon */}
-        <div
-          className={`w-[150px] h-[80px] flex items-center justify-center rounded-lg
-                     bg-black/30 dark:bg-white/10 backdrop-blur
-                     group-hover:scale-105 transition`}
-        >
-          {icon}
-        </div>
-
-        {/* Text */}
-        <div>
-          <h3 className="text-3xl font-semibold text-gray-900 dark:text-white">
-            {title}
-          </h3>
-          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-            {description}
-          </p>
-        </div>
-      </div>
-    </a>
-
-);
-};
-
-<div className="relative">
-  <div className="absolute top-0 botttom-0 left-0 right-0 opacity-80">
-    <img
-      src="/images/home/Cover-light.png"
-      className="block dark:hidden pointer-events-none w-full h-full"
-      alt="Decorative background image."
-    />
-    <img
-      src="/images/home/Cover-dark.png"
-      className="hidden dark:block pointer-events-none w-full h-full"
-      alt="Decorative background image."
-    />
-  </div>
-
-  <div className=" z-10 pt-[200px] max-w-4xl mx-auto h-screen ">
-    <h1 className="block text-4xl font-medium text-center text-gray-900 dark:text-zinc-50 tracking-tight">
-     Starpay Documentation
-    </h1>
-
-    <div className="max-w-xl mx-auto px-4 mt-4 text-lg text-center text-gray-500 dark:text-zinc-500">
-      Meet the next generation of documentation. AI-native, beautiful out-of-the-box, and built for developers and teams.
-    </div>
-
-    <div className="px-6 lg:px-0  grid sm:grid-cols-2 gap-x-6 gap-y-4 mt-[50px]">
-
-<HeroCard
-  href="#"
-  title="Introduction"
-  description="Full visibility into float request history at every organizational level."
-/>
-
-<HeroCard
-  title="API Integration"
-  description="Install the CLI to preview and develop your docs locally"
-  href="/api/introduction"
-/>
-
-    </div>
-
-  </div>
-</div>
+<Card title="API integration" icon="code" href="/api-reference/openapi">
+  Explore endpoints, payload formats, and integration details.
+</Card>
