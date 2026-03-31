@@ -5,6 +5,42 @@ mode: "frame"
 keywords: ["overview", "platform", "getting started", "features"]
 ---
 
+export const HeroCard = ({
+  title,
+  description,
+  href,
+}) => {
+  return (
+    <a
+      href={href}
+      className="group relative block rounded-2xl p-6 overflow-hidden
+                 bg-[gray]/20 dark:bg-zinc-900
+                 border border-gray-200 dark:border-zinc-700
+                 transition-all duration-300 hover:shadow-lg min-h-[180px]"
+    >
+      {/* Background Image */}
+      <img
+        src="/images/pattern.png"
+        alt="background pattern"
+        className="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none"
+      />
+
+      {/* Content */}
+      <div className="relative z-10 flex items-start gap-4">
+        <div>
+          <h3 className="text-3xl font-semibold text-gray-900 dark:text-white">
+            {title}
+          </h3>
+          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+            {description}
+          </p>
+        </div>
+      </div>
+    </a>
+
+);
+};
+
 <div className="relative">
   <div className="absolute top-0 botttom-0 left-0 right-0 opacity-80">
     <img
@@ -30,6 +66,17 @@ keywords: ["overview", "platform", "getting started", "features"]
 
     <div className="px-6 lg:px-0  grid sm:grid-cols-2 gap-x-6 gap-y-4 mt-[50px]">
 
+<HeroCard
+  href="#"
+  title="Introduction"
+  description="Full visibility into float request history at every organizational level."
+/>
+
+<HeroCard
+  title="API Integration"
+  description="Install the CLI to preview and develop your docs locally"
+  href="/api/introduction"
+/>
 
     </div>
 
