@@ -78,7 +78,7 @@
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg",
-    "href": "https://mintlify.com/docs"
+    "href": "/"
   },
   "api": {
     "mdx": {
@@ -87,104 +87,7 @@
       }
     }
   },
-  "navbar": {
-    "primary": {
-      "type": "button",
-      "label": "Get started",
-      "href": "/"
-    },
-    "links": [
-      {
-        "label": "Talk to us",
-        "href": "https://mintlify.com/contact/sales"
-      }
-    ]
-  },
-  "footer": {
-    "socials": {
-      "x": "https://x.com/mintlify",
-      "linkedin": "https://www.linkedin.com/company/mintlify",
-      "github": "https://github.com/mintlify"
-    },
-    "links": [
-      {
-        "header": "Explore",
-        "items": [
-          {
-            "label": "Startups",
-            "href": "https://www.mintlify.com/startups"
-          },
-          {
-            "label": "Enterprise",
-            "href": "https://www.mintlify.com/enterprise"
-          },
-          {
-            "label": "Switch",
-            "href": "https://www.mintlify.com/switch"
-          }
-        ]
-      },
-      {
-        "header": "Resources",
-        "items": [
-          {
-            "label": "Customers",
-            "href": "https://mintlify.com/customers"
-          },
-          {
-            "label": "Blog",
-            "href": "https://mintlify.com/blog"
-          },
-          {
-            "label": "Pricing",
-            "href": "https://www.mintlify.com/pricing"
-          },
-          {
-            "label": "Contact support",
-            "href": "https://www.mintlify.com/docs/contact-support"
-          },
-          {
-            "label": "Feature Requests",
-            "href": "https://github.com/orgs/mintlify/discussions/categories/feature-requests"
-          },
-          {
-            "label": "Status",
-            "href": "https://www.mintlify.com/docs/status"
-          }
-        ]
-      },
-      {
-        "header": "Company",
-        "items": [
-          {
-            "label": "Careers",
-            "href": "https://mintlify.com/careers"
-          },
-          {
-            "label": "Wall of Love",
-            "href": "https://www.mintlify.com/wall-of-love"
-          }
-        ]
-      },
-      {
-        "header": "Legal",
-        "items": [
-          {
-            "label": "Privacy Policy",
-            "href": "https://mintlify.com/legal/privacy"
-          },
-          {
-            "label": "Terms of Service",
-            "href": "https://mintlify.com/legal/terms"
-          },
-          {
-            "label": "Security",
-            "href": "https://security.mintlify.com/?_gl=1*ascm4x*_gcl_au*NTU1ODkzNjQ0LjE3NTQ5Mjg4NzIuMTgzMDQ5NTExMS4xNzU3NTQwMDk1LjE3NTc1NDAwOTQ."
-          }
-        ]
-      }
-    ]
-  },
+
   "thumbnails": {
     "background": "/images/thumbnail/background.svg"
   },
