@@ -1,75 +1,40 @@
 ---
 title: "Introduction"
-description: "Meet the next generation of documentation. AI-native, beautiful out-of-the-box, and built for developers."
-mode: "frame"
-keywords: ["overview", "platform", "getting started", "features"]
+description: "A comprehensive guide to integrating and operating the Star-Pay payment gateway within your systems."
 ---
 
-export const HeroCard = ({ title, description, href }) => {
-  return (
-    <a
-      href={href}
-      className="group relative block rounded-2xl p-6 overflow-hidden bg-[gray]/20 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 min-h-[180px]"
-    >
-      <img
-        src="/images/pattern.png"
-        alt="background pattern"
-        className="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none"
-      />
+## Welcome
 
-      <div className="relative z-10 flex items-start gap-4">
-        <div>
-          <h3 className="text-3xl font-semibold text-gray-900 dark:text-white">
-            {title}
-          </h3>
-          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-            {description}
-          </p>
-        </div>
-      </div>
-    </a>
+Welcome to the Star-Pay API Documentation — your comprehensive guide to integrating and operating the Star-Pay payment gateway within your systems.
 
-);
-};
+Star-Pay is a secure, scalable, API-first payment gateway designed to simplify digital transaction processing for modern applications. Our platform enables fast, reliable, and traceable payment experiences with built-in role-based authorization for accountability and operational efficiency.
 
-<div className="relative">
-  <div className="absolute top-0 botttom-0 left-0 right-0 opacity-80">
-    <img
-      src="/images/home/Cover-light.png"
-      className="block dark:hidden pointer-events-none w-full h-full"
-      alt="Decorative background image."
-    />
-    <img
-      src="/images/home/Cover-dark.png"
-      className="hidden dark:block pointer-events-none w-full h-full"
-      alt="Decorative background image."
-    />
-  </div>
+Whether you're building customer-facing checkout systems, recurring billing solutions, or real-time payment verification features, Star-Pay provides the flexibility and security your team needs.
 
-  <div className=" z-10 pt-[200px] max-w-4xl mx-auto h-screen ">
-    <h1 className="block text-4xl font-medium text-center text-gray-900 dark:text-zinc-50 tracking-tight">
-     Starpay Documentation
-    </h1>
+## Who This Guide Is For
 
-    <div className="max-w-xl mx-auto px-4 mt-4 text-lg text-center text-gray-500 dark:text-zinc-500">
-    Comprehensive guides and API references to help you integrate Starpay, manage transactions, and build reliable financial workflows.
-    </div>
+This documentation is intended for:
 
-    <div className="px-6 lg:px-0  grid sm:grid-cols-2 gap-x-6 gap-y-4 mt-[50px]">
+- Developers integrating payment functionality
+- Technical teams working on system integrations
+- Product engineers implementing secure payment workflows
 
-<HeroCard
-  href="#"
-  title="Introduction"
-  description="Understand Starpay’s core concepts, system architecture, and how to get started quickly."
-/>
+## Authentication
 
-<HeroCard
-  title="API Integration"
-  description="Learn how to connect your system with Starpay APIs for seamless payment and reconciliation workflows."
-  href="/api/introduction"
-/>
+All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
 
-    </div>
+```json
+"security": [
+  {
+    "bearerAuth": []
+  }
+]
+```
 
-  </div>
-</div>
+<Card
+  title="Star-Pay API Reference"
+  icon="credit-card"
+  href="/api-reference/openapi"
+>
+  Explore the full Star-Pay API specification and available endpoints.
+</Card>

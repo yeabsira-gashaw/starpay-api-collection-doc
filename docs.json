@@ -34,7 +34,6 @@
                     "group": "Api Reference",
                     "root": "api/introduction",
                     "pages": [
-                      "api-reference/introduction",
                       "api-reference/endpoint/transaction",
                       "api-reference/endpoint/verification",
                       "api-reference/test-numbers",
@@ -51,7 +50,7 @@
             "groups": [
               {
                 "group": "API documentation",
-                "pages": ["api-reference/introduction"]
+                "pages": ["api-reference/endpoint/transaction"]
               },
               {
                 "group": "Endpoints",
