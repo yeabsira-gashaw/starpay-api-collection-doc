@@ -230,6 +230,15 @@
             "example": "https://google.com",
             "description": "-`The URL where the payment gateway will automatically redirect the customer after a successful payment. This is used to bring the customer back to your website or app to show a confirmation page, receipt, or next steps.`"
           },
+          "metadata": {
+            "type": "object",
+            "description": "Additional custom information that you can send with the order. This field allows you to include extra data (e.g., order reference, custom fields) that will be returned in the payment response and webhook notifications.",
+            "example": {
+              "order_reference": "ORD-2025-001",
+              "custom_field": "any value"
+            },
+            "additionalProperties": true
+          },
           "items": {
             "type": "array",
             "items": {
@@ -394,6 +403,12 @@
               },
               "metadata": {
                 "type": "object",
+                "description": "Additional custom information that can be sent with the order. This field allows you to include extra data that will be returned in the payment response and webhook notifications.",
+                "example": {
+                  "merchant_id": "12345",
+                  "customer_id": "cust_67890",
+                  "order_reference": "ORD-2025-001"
+                },
                 "properties": {
                   "merchant_id": {
                     "type": "string"
