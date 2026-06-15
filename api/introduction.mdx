@@ -3,23 +3,29 @@ title: "Introduction"
 description: "A comprehensive guide to integrating and operating the Star-Pay payment gateway within your systems."
 ---
 
-## Welcome
+## About this API Reference
 
-Welcome to the Star-Pay API Documentation — your comprehensive guide to integrating and operating the Star-Pay payment gateway within your systems.
+This section documents Star-Pay's HTTP APIs: resources and endpoints, request and response examples, authentication requirements, error codes, and webhook verification. It's focused on the technical integration details engineering teams need to implement payment flows such as creating transactions, handling callbacks, and querying transaction status.
 
-Star-Pay is a secure, scalable, API-first payment gateway designed to simplify digital transaction processing for modern applications. Our platform enables fast, reliable, and traceable payment experiences with built-in role-based authorization for accountability and operational efficiency.
-
-Whether you're building customer-facing checkout systems, recurring billing solutions, or real-time payment verification features, Star-Pay provides the flexibility and security your team needs.
-
-## Who This Guide Is For
-
-This documentation is intended for:
-
-- Developers integrating payment functionality
-- Technical teams working on system integrations
-- Product engineers implementing secure payment workflows
+For merchant onboarding, sandbox setup, and Dashboard tasks, see the Get Started guide: [Get Started](../index)
 
 
+## Authentication
+
+Authentication requirements depend on the endpoint. Merchant-facing endpoints commonly require the `x-api-secret` header, while other endpoints in the OpenAPI specification may use Bearer authentication. Check each endpoint's documentation for exact requirements.
+
+Example header (merchant API secret):
+
+```http
+x-api-secret: X/2uxXAjJqaai5gRzXHzcFPcx9E6B3pibBbVSoce1U23q5hR2Sr5pxlh6WLQZBep
+```
+
+API base URLs
+
+- Production: `https://api.starpayethiopia.com`
+- Sandbox: See the [Get Started](../index) guide for sandbox base URLs and merchant onboarding steps.
+
+For webhook and callback signature verification details, see: [Callback Signature Verification](../sign)
 
 <Card
   title="Star-Pay API Reference"
