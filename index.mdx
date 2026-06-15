@@ -19,17 +19,82 @@ This documentation is intended for:
 - Technical teams working on system integrations
 - Product engineers implementing secure payment workflows
 
-## Authentication
+# Get Started with StarPay
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+## 1. Create a StarPay Sandbox Account
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+Before integrating StarPay, you need a sandbox account for testing.
+
+1. Visit **starpayethiopia.com** and create a sandbox merchant account.
+2. Complete the registration form with the required information.
+
+<img src="/images/signup-form.png" alt="StarPay signup form" style={{ width: '100%', borderRadius: '1rem', marginTop: '1rem', marginBottom: '1rem' }} />
+
+3. After your account is created, a unique **Sandbox Merchant ID** will be sent to your verified phone number via SMS.
+
+<img src="/images/verify-phone.png" alt="StarPay phone verification" style={{ width: '100%', borderRadius: '1rem', marginTop: '1rem', marginBottom: '1rem' }} />
+
+4. Sign in to the **StarPay Sandbox Merchant Portal** using your Merchant ID and registered phone number.
+
+---
+
+## 2. Generate API Credentials
+
+API credentials are required to authenticate requests and securely receive payment notifications.
+
+1. Log in to the Merchant Portal.
+2. Navigate to **API Keys**.
+
+<img src="/images/navigate-to-api-key.png" alt="Navigate to API Keys" style={{ width: '100%', borderRadius: '1rem', marginTop: '1rem', marginBottom: '1rem' }} />
+
+3. Generate an **API Key** by providing a name for the key.
+
+<img src="/images/generateAPI.png" alt="Generate API Key" style={{ width: '100%', borderRadius: '1rem', marginTop: '1rem', marginBottom: '1rem' }} />
+
+4. Generate a **Callback Key**, which is used to verify signatures and secure communication between StarPay and your system.
+
+You are now ready to initiate transactions and generate payment links.
+
+---
+
+## 3. Move to Production
+
+When you are ready to accept live payments, submit your business information for review.
+
+1. Log in to the Merchant Portal.
+2. Click **Switch to Live Mode**.
+
+<img src="/images/Swith-to-live-mode.png" alt="Switch to Live Mode" style={{ width: '100%', borderRadius: '1rem', marginTop: '1rem', marginBottom: '1rem' }} />
+
+3. Provide the required business information, including:
+   - Business License Number
+   - TIN (Tax Identification Number)
+   - Settlement Bank Account
+
+<img src="/images/provide-business-info.png" alt="Provide business information" style={{ width: '100%', borderRadius: '1rem', marginTop: '1rem', marginBottom: '1rem' }} />
+
+4. Submit your application for review.
+
+Our team will review your information and notify you of the approval status.
+
+### After Approval
+
+Once your application is approved:
+
+1. You will receive a **Production Merchant ID** associated with your registered phone number.
+2. Sign in to the **Production Merchant Portal**.
+3. Update your integration settings:
+
+```text
+https://api.starpayethiopia.com
 ```
+
+4. Generate new **Production API Keys**.
+5. Generate a new **Production Callback Key**.
+
+Your integration is now ready to process live transactions and accept real payments.
+
+---
 
 <Card
   title="Star-Pay API Reference"
