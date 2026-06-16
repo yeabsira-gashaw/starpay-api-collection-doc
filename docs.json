@@ -36,6 +36,7 @@
                     "pages": [
                       "api-reference/endpoint/transaction",
                       "api-reference/endpoint/verification",
+                      "api-reference/error-codes",
                       "api-reference/test-numbers",
                       "api-reference/sign"
                     ]
