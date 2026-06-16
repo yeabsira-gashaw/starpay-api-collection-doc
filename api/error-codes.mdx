@@ -30,9 +30,10 @@ All error responses follow a consistent structure for predictable error handling
 
 ```json
 {
-  "status": "error",
-  "code": "TRDP_007",
-  "message": "Failed to create payment order."
+  "error": {
+    "code": "TRDP_007",
+    "message": "Failed to create payment order."
+  }
 }
 ```
 
@@ -50,9 +51,10 @@ HTTP/1.1 404 Not Found
 
 ```json
 {
-  "status": "error",
-  "code": "ERP_006",
-  "message": "Merchant not found in ERP system."
+  "error": {
+    "code": "ERP_006",
+    "message": "Merchant not found in ERP system."
+  }
 }
 ```
   </Accordion>
@@ -66,9 +68,10 @@ HTTP/1.1 404 Not Found
 
 ```json
 {
-  "status": "error",
-  "code": "TRDP_006",
-  "message": "Payment not found."
+  "error": {
+    "code": "TRDP_006",
+    "message": "Payment not found."
+  }
 }
 ```
   </Accordion>
@@ -82,9 +85,10 @@ HTTP/1.1 400 Bad Request
 
 ```json
 {
-  "status": "error",
-  "code": "TRDP_006",
-  "message": "USD card payment is not enabled for this merchant. Please contact support to enable USD payments."
+  "error": {
+    "code": "TRDP_006",
+    "message": "USD card payment is not enabled for this merchant. Please contact support to enable USD payments."
+  }
 }
 ```
   </Accordion>
