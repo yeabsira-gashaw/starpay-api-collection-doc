@@ -13,10 +13,10 @@ The StarPay API uses standard HTTP status codes together with application-specif
 
 | HTTP Status | Error Code | Message |
 |---|---|---|
-| 404 | ERP_006 | Merchant not found in ERP system. |
-| 404 | TRDP_006 | Payment not found. |
-| 400 | TRDP_006 | USD card payment is not enabled for this merchant. Please contact support to enable USD payments. |
-| 400 | TRDP_007 | Failed to create payment order. |
+| 404 | TRDP_001 | Merchant not found. |
+| 404 | TRDP_002 | Payment not found. |
+| 400 | TRDP_014 | USD card payment is not enabled for this merchant. Please contact support to enable usd payment. |
+| 400 | TRDP_003 | Failed to create payment order transaction. |
 
 <Tip>
 **Best Practice:** Each error code represents a specific failure condition. Avoid reusing the same error code for different errors—this makes troubleshooting much easier for merchants integrating with your API.
@@ -31,8 +31,8 @@ All error responses follow a consistent structure for predictable error handling
 ```json
 {
   "error": {
-    "code": "TRDP_007",
-    "message": "Failed to create payment order."
+    "code": "TRDP_003",
+    "message": "Failed to create payment order transaction."
   }
 }
 ```
@@ -43,7 +43,7 @@ All error responses follow a consistent structure for predictable error handling
 
 <AccordionGroup>
   <Accordion title="404 - Merchant Not Found" icon="building">
-    When the merchant account cannot be located in the ERP system.
+    When the merchant account cannot be located.
 
 ```http
 HTTP/1.1 404 Not Found
@@ -52,8 +52,8 @@ HTTP/1.1 404 Not Found
 ```json
 {
   "error": {
-    "code": "ERP_006",
-    "message": "Merchant not found in ERP system."
+    "code": "TRDP_001",
+    "message": "Merchant not found."
   }
 }
 ```
@@ -69,7 +69,7 @@ HTTP/1.1 404 Not Found
 ```json
 {
   "error": {
-    "code": "TRDP_006",
+    "code": "TRDP_002",
     "message": "Payment not found."
   }
 }
@@ -86,8 +86,8 @@ HTTP/1.1 400 Bad Request
 ```json
 {
   "error": {
-    "code": "TRDP_006",
-    "message": "USD card payment is not enabled for this merchant. Please contact support to enable USD payments."
+    "code": "TRDP_014",
+    "message": "USD card payment is not enabled for this merchant. Please contact support to enable usd payment."
   }
 }
 ```
@@ -100,7 +100,7 @@ HTTP/1.1 400 Bad Request
 
 | Error Code | Meaning | Resolution |
 |---|---|---|
-| ERP_006 | Merchant not found | Verify that your merchant ID is correct and your account is active. |
-| TRDP_006 | Payment not found | Check that the payment ID is valid and corresponds to an existing transaction. |
-| TRDP_007 | Order creation failed | Review the payment request parameters and ensure all required fields are valid. |
-| TRDP_008 | USD payment not enabled | Contact support at support@starpayethiopia.com to enable USD payments for your account. |
+| TRDP_001 | Merchant not found | Verify that your merchant ID is correct and your account is active. |
+| TRDP_002 | Payment not found | Check that the payment ID is valid and corresponds to an existing transaction. |
+| TRDP_003 | Order creation failed | Review the payment request parameters and ensure all required fields are valid. |
+| TRDP_014 | USD payment not enabled | Contact support at support@starpayethiopia.com to enable USD payments for your account. |
