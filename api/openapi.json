@@ -7,8 +7,8 @@
   },
   "servers": [
     {
-      "url": "https://starpayqa.starpayethiopia.com/v1/starpay-api",
-      "description": "Local server"
+      "url": "https://sandbox-api.starpayethiopia.com/v1/starpay-api",
+      "description": "Sandbox server"
     }
   ],
   "paths": {
@@ -21,7 +21,7 @@
           {
             "lang": "csharp",
             "label": "C#",
-            "source": "using System.Net.Http;\n\nusing var client = new HttpClient();\nvar response = await client.GetAsync(\"https://starpayqa.starpayethiopia.com/v1/starpay-api/trdp/orde\");\nConsole.WriteLine(await response.Content.ReadAsStringAsync());\n"
+            "source": "using System.Net.Http;\n\nusing var client = new HttpClient();\nvar response = await client.GetAsync(\"https://sandbox-api.starpayethiopia.com/v1/starpay-api/trdp/orde\");\nConsole.WriteLine(await response.Content.ReadAsStringAsync());\n"
           }
         ],
         "parameters": [
@@ -83,7 +83,7 @@
           {
             "lang": "csharp",
             "label": "C#",
-            "source": "using System.Net.Http;\n\nusing var client = new HttpClient();\nvar response = await client.GetAsync(\"https://starpayqa.starpayethiopia.com/v1/starpay-api/trdp/verify\");\nConsole.WriteLine(await response.Content.ReadAsStringAsync());\n"
+            "source": "using System.Net.Http;\n\nusing var client = new HttpClient();\nvar response = await client.GetAsync(\"https://sandbox-api.starpayethiopia.com/v1/starpay-api/trdp/verify\");\nConsole.WriteLine(await response.Content.ReadAsStringAsync());\n"
           }
         ],
         "parameters": [
