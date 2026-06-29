@@ -40,6 +40,25 @@ Use the following **test phone numbers** when testing the **Star-Pay API** in sa
 
 ---
 
+## Sandbox Payment Behavior
+
+In the StarPay sandbox environment, only **USSD Push** payments are simulated. This allows developers to test the complete payment flow without requiring access to real payment networks or customer accounts.
+
+When using the sandbox test phone numbers, the payment is processed automatically by the sandbox system. No USSD prompt will be sent to the device, and no user action is required to complete the payment. The transaction will automatically transition to a successful payment status, allowing you to test your integration, callbacks, redirects, and payment status handling.
+
+Although the sandbox environment simulates only the USSD Push payment method, the integration flow is the same for all StarPay payment methods available in production, including:
+
+- USSD Push
+- Pay by OTP
+- Card Payments (MPGS)
+- Other supported payment methods
+
+Once your integration works successfully in the sandbox environment, no additional integration changes are required when moving to production. The same API endpoints, request formats, callback handling, and status verification processes apply to all payment methods.
+
+> **Note:** Sandbox payments are simulated for testing purposes only. No real funds are transferred, and no payment requests are sent to actual customer devices.
+
+---
+
 ## ⚠️ Important Notes
 
 - Works **only in sandbox mode**

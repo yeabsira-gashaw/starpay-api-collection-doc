@@ -2,3 +2,277 @@
 title: "Create Transaction"
 openapi: "POST /trdp/order"
 ---
+ 
+# Create a Transaction
+
+Creates a new payment session and returns a payment URL that can be used to collect payment from a customer.
+
+Use this endpoint whenever you want to initiate a payment through StarPay.
+
+## Endpoint
+
+```
+POST /trdp/order
+```
+
+## Authentication
+
+Include your API secret in the request header.
+
+Header
+- `x-api-secret` (string) — Required for merchant endpoints. Your StarPay API secret key. Generate this key from the Merchant Portal under **API Keys**.
+
+Example:
+
+```
+x-api-secret: X/2uxXAjJqaai5gRzXHzcFPcx9E6B3pibBbVSoce1U23q5hR2Sr5pxlh6WLQZBep
+```
+
+---
+
+## Request Body
+
+### amount
+
+The amount to be charged to the customer.
+
+Type: `number` — Required
+
+Example:
+
+```
+1000
+```
+
+---
+
+### description
+
+A short description of the payment. This may be displayed to the customer during checkout.
+
+Type: `string` — Required
+
+Example:
+
+```
+"Purchase of VANS Shoes"
+```
+
+---
+
+### currency
+
+The currency used for the transaction.
+
+Currently supported: `ETB`
+
+Type: `string` — Required
+
+Example:
+
+```
+"ETB"
+```
+
+---
+
+### customerName
+
+The full name of the customer making the payment.
+
+Type: `string` — Required
+
+Example:
+
+```
+"John Doe"
+```
+
+---
+
+### customerPhoneNumber
+
+The customer's phone number. This number may be used for payment verification and payment initiation.
+
+Type: `string` — Required
+
+Example:
+
+```
+"+251987654567"
+```
+
+---
+
+### items
+
+List of products or services included in the transaction.
+
+Type: `array` — Required
+
+Example:
+
+```
+[
+	{
+		"name": "VANS Shoe",
+		"quantity": 1,
+		"price": 1000
+	}
+]
+```
+
+---
+
+### callbackURL
+
+A server-to-server notification URL that StarPay will call when the payment status changes. Use this to automatically update your system after a successful or failed payment.
+
+Type: `string` — Optional
+
+Example:
+
+```
+"https://example.com/webhooks/starpay"
+```
+
+### Successful Callback Example
+
+```json
+{
+	"billRefNo": "33WJ8946WB",
+	"status": "PAID",
+	"timestamp": "2025-12-10T11:05:37.566Z",
+	"message": "Payment successful",
+	"merchantId": "6888dc21ee7cbfe63657144f",
+	"customerId": "656445e6-20fa-440d-b8c9-0a588d1ca05b",
+	"externalReferenceId": "CLA9SR5XR9",
+	"amount": 1,
+	"payment_type": "USSD_PUSH",
+	"receipt_url": "https://receipt.starpayethiopia.com/receiptqa/WST-33WJ8946WB"
+}
+```
+
+### Failed Callback Example
+
+```json
+{
+	"billRefNo": "5I974ZLE60",
+	"status": "FAILED",
+	"message": "Payment failed"
+}
+```
+
+---
+
+### redirectUrl
+
+The URL where customers will be redirected after completing payment. Typically a success or order confirmation page.
+
+Type: `string` — Optional
+
+Example:
+
+```
+"https://yourstore.com/payment-success"
+```
+
+---
+
+### customerEmail
+
+Customer email address.
+
+Type: `string` — Optional
+
+Example:
+
+```
+"customer@example.com"
+```
+
+---
+
+### expiredAt
+
+The date and time when the payment session expires (ISO 8601 format). After expiration, the customer can no longer complete the payment.
+
+Type: `string` — Optional
+
+Example:
+
+```
+"2025-07-01T23:59:59Z"
+```
+
+---
+
+### metadata
+
+Additional custom data associated with the transaction. Returned in callbacks and transaction status responses.
+
+Type: `object` — Optional
+
+Example:
+
+```json
+{
+	"order_reference": "ORD-2025-001",
+	"customer_type": "premium"
+}
+```
+
+---
+
+## Example Request
+
+```bash
+curl --request POST \
+	--url https://api.starpayethiopia.com/trdp/order \
+	--header 'Content-Type: application/json' \
+	--header 'x-api-secret: YOUR_API_SECRET' \
+	--data '{
+		"amount": 1000,
+		"currency": "ETB",
+		"description": "Purchase of VANS Shoes",
+		"customerName": "John Doe",
+		"customerPhoneNumber": "+251987654567",
+		"callbackURL": "https://example.com/webhooks/starpay",
+		"redirectUrl": "https://yourstore.com/payment-success"
+	}'
+```
+
+---
+
+## Response
+
+### Success Response
+
+```json
+{
+	"status": "success",
+	"timestamp": "2025-07-01T10:30:00Z",
+	"message": "Order created successfully",
+	"data": {
+		"billRefNo": "33WJ8946WB",
+		"paymentUrl": "https://pay.starpayethiopia.com/checkout/33WJ8946WB"
+	}
+}
+```
+
+---
+
+## Next Steps
+
+After creating a transaction:
+
+1. Redirect the customer to the `paymentUrl`.
+2. Wait for a callback notification from StarPay.
+3. Verify the callback signature using your Callback Key (see [Callback Signature Verification](../sign)).
+4. Update the payment status in your system.
+5. Optionally query the Transaction Status API for additional verification.
+
+---
+
+This endpoint documentation follows the structure developers expect: overview, authentication, request parameters, examples, and webhook guidance.
+

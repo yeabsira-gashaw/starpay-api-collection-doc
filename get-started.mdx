@@ -1,0 +1,106 @@
+---
+title: "Get Started with StarPay"
+description: "Account setup and sandbox onboarding for Star-Pay merchants."
+---
+
+## 1. Create a StarPay Sandbox Account
+
+Before integrating StarPay, you need a sandbox account for testing.
+
+1. Visit **starpayethiopia.com** to create a sandbox merchant account.
+
+<img src="/images/starpay-homepage.png" alt="StarPay homepage" style={{ width: '100%', borderRadius: '1rem', marginTop: '1rem', marginBottom: '1rem' }} />
+
+2. Complete the registration form with the required information.
+
+<img src="/images/signup-form.png" alt="StarPay signup form" style={{ width: '100%', borderRadius: '1rem', marginTop: '1rem', marginBottom: '1rem' }} />
+
+3. After your account is created, a unique **Sandbox Merchant ID** will be sent to your verified phone number via SMS.
+
+<img src="/images/verify-phone.png" alt="StarPay phone verification" style={{ width: '100%', borderRadius: '1rem', marginTop: '1rem', marginBottom: '1rem' }} />
+
+4. Sign in to the **StarPay Sandbox Merchant Portal** using your Merchant ID and registered phone number.
+
+<img src="/images/starpay-dashboard.png" alt="StarPay dashboard" style={{ width: '100%', borderRadius: '1rem', marginTop: '1rem', marginBottom: '1rem' }} />
+
+---
+
+## 2. Generate API Credentials
+
+API credentials are required to authenticate requests and securely receive payment notifications.
+
+1. Log in to the Merchant Portal.
+2. Navigate to **API Keys**.
+
+<img src="/images/navigate-to-api-key.png" alt="Navigate to API Keys" style={{ width: '100%', borderRadius: '1rem', marginTop: '1rem', marginBottom: '1rem' }} />
+
+3. Generate an **API Key** by providing a name for the key.
+
+<img src="/images/generateAPI.png" alt="Generate API Key" style={{ width: '100%', borderRadius: '1rem', marginTop: '1rem', marginBottom: '1rem' }} />
+
+4. Generate a **Callback Key**, which is used to verify signatures and secure communication between StarPay and your system.
+
+You are now ready to initiate transactions and generate payment links.
+
+
+---
+
+## 3. Move to Production
+
+When you are ready to accept live payments, submit your business information for review.
+
+1. Log in to the Merchant Portal.
+2. Click **Switch to Live Mode**.
+
+<img src="/images/Swith-to-live-mode.png" alt="Switch to Live Mode" style={{ width: '100%', borderRadius: '1rem', marginTop: '1rem', marginBottom: '1rem' }} />
+
+3. Provide the required business information, including:
+   - Business License Number
+   - TIN (Tax Identification Number)
+   - Settlement Bank Account
+
+<img src="/images/provide-business-info.png" alt="Provide business information" style={{ width: '100%', borderRadius: '1rem', marginTop: '1rem', marginBottom: '1rem' }} />
+
+4. Submit your application for review.
+
+Our team will review your information and notify you of the approval status.
+
+## Important: API Gateway Access
+
+After your production account is approved, API access must be enabled for your merchant account before you can start making API requests.
+
+If API Gateway access has not been enabled, requests to the StarPay API will be rejected with the following error:
+
+```json
+{
+  "message": "API gateway feature is not enabled. If you believe this is an error, please contact your administrator."
+}
+```
+
+### What to do
+
+- Ensure your production onboarding request has been approved.
+- Verify that the **API Gateway** feature has been enabled for your merchant account.
+- Generate your production API credentials from the Merchant Portal.
+- If you receive the error above, contact the StarPay support team or your account administrator to request API Gateway activation.
+
+> **Note:** Production account approval and API Gateway activation are separate steps. A merchant may have an approved production account but still be unable to access the API until API Gateway access has been enabled.
+
+---
+
+### After Approval
+
+Once your application is approved:
+
+1. You will receive a **Production Merchant ID** associated with your registered phone number.
+2. Sign in to the **Production Merchant Portal**.
+3. Update your integration settings:
+
+```text
+https://api.starpayethiopia.com
+```
+
+4. Generate new **Production API Keys**.
+5. Generate a new **Production Callback Key**.
+
+Your integration is now ready to process live transactions and accept real payments.
