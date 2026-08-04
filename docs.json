@@ -37,6 +37,22 @@
                   "api/test-numbers",
                   "api/sign"
                 ]
+              },
+              {
+                "group": "Escrow Service",
+                "icon": "shield-check",
+                "pages": [
+                  "api/endpoint/escrow-order",
+                  "api/endpoint/escrow-release",
+                  "api/endpoint/escrow-cancel"
+                ]
+              },
+              {
+                "group": "Merchant",
+                "icon": "store",
+                "pages": [
+                  "api/endpoint/get-merchant"
+                ]
               }
             ]
           },
@@ -45,14 +61,24 @@
             "tab": "API reference",
             "groups": [
               {
-                "group": "API documentation",
-                "pages": ["api/endpoint/transaction"]
-              },
-              {
-                "group": "Endpoints",
+                "group": "Payment Endpoints",
                 "pages": [
                   "api/endpoint/transaction",
                   "api/endpoint/verification"
+                ]
+              },
+              {
+                "group": "Escrow Endpoints",
+                "pages": [
+                  "api/endpoint/escrow-order",
+                  "api/endpoint/escrow-release",
+                  "api/endpoint/escrow-cancel"
+                ]
+              },
+              {
+                "group": "Merchant Endpoints",
+                "pages": [
+                  "api/endpoint/get-merchant"
                 ]
               },
               {

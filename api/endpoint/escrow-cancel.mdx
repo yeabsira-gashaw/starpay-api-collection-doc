@@ -1,0 +1,83 @@
+---
+title: "Cancel Escrow"
+openapi: "POST /trdp/escrow/cancel"
+---
+
+# Cancel Escrow
+
+Cancel an active escrow transaction. When an escrow order is cancelled before fulfillment or release of funds, StarPay marks the transaction as cancelled and initiates the refund workflow for the customer.
+
+## Endpoint
+
+```http
+POST /trdp/escrow/cancel
+```
+
+## Authentication
+
+Include your API secret in the request header.
+
+Header:
+- `x-api-secret` (string) — Required. Your StarPay API secret key. Generate this key from the Merchant Portal under **API Keys**.
+
+Example:
+
+```http
+x-api-secret: SplFeYdc/Hc5S1CGmVDtETLYUJY/10a38ejamzwb1YH30h+u8sOK2fpTlyKitpPk
+```
+
+---
+
+## Request Body
+
+### escrowId
+
+The unique identifier of the escrow transaction you wish to cancel.
+
+Type: `string` — Required
+
+Example:
+
+```json
+"59667344"
+```
+
+---
+
+## Example Request
+
+```bash
+curl --request POST \
+  --url https://sandbox-api.starpayethiopia.com/v1/starpay-api/trdp/escrow/cancel \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-secret: SplFeYdc/Hc5S1CGmVDtETLYUJY/10a38ejamzwb1YH30h+u8sOK2fpTlyKitpPk' \
+  --data '{
+    "escrowId": "59667344"
+  }'
+```
+
+---
+
+## Response
+
+### Success Response (`200 OK`)
+
+```json
+{
+  "status": "success",
+  "timestamp": "2026-07-29T11:30:00Z",
+  "message": "Escrow cancelled successfully",
+  "data": {
+    "escrowId": "59667344",
+    "status": "CANCELLED",
+    "cancelledAt": "2026-07-29T11:30:00Z"
+  }
+}
+```
+
+---
+
+## Important Considerations
+
+- **Cancellation Window**: An escrow order can only be cancelled while funds are in the held state and before allocations have been fully released to merchants.
+- **Customer Refund**: Depending on the payment method used, the customer will receive an automatic refund or a refund credit in accordance with platform settlement policies.
