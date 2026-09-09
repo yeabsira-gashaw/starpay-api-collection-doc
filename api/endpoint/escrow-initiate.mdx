@@ -1,0 +1,290 @@
+---
+title: "Initiate Escrow"
+openapi: "POST /trdp/escrow/order"
+---
+
+# Initiate Escrow
+
+Creates a new escrow payment session and returns a payment URL. This is used when payment should be held securely until a condition is met.
+
+## Endpoint
+
+```
+POST /v1/starpay-api/trdp/escrow/order
+```
+
+## Authentication
+
+Include your API secret in the request header.
+
+Header
+- `x-api-secret` (string) — Required. Your StarPay API secret key.
+
+Example:
+
+```
+x-api-secret: 0nYjAt5ZoTkYQucoywwQnkPUAuQbe2gSkHCGOFZvINBIVIUkqrypzVrxzg4U7Leq
+```
+
+---
+
+## Request Body
+
+### orderId
+
+A unique identifier for the order in your system.
+
+Type: `string` — Required
+
+Example:
+
+```
+"ESCROW-20260729-001"
+```
+
+---
+
+### amount
+
+The amount to be charged to the customer and held in escrow.
+
+Type: `number` — Required
+
+Example:
+
+```
+2
+```
+
+---
+
+### currency
+
+The currency used for the transaction.
+
+Type: `string` — Required
+
+Example:
+
+```
+"ETB"
+```
+
+---
+
+### customerName
+
+The full name of the customer making the payment.
+
+Type: `string` — Required
+
+Example:
+
+```
+"John Doe"
+```
+
+---
+
+### customerPhoneNumber
+
+The customer's phone number.
+
+Type: `string` — Required
+
+Example:
+
+```
+"+251912345678"
+```
+
+---
+
+### description
+
+A short description of the escrow payment.
+
+Type: `string` — Required
+
+Example:
+
+```
+"Escrow payment for marketplace order"
+```
+
+---
+
+### callbackURL
+
+A server-to-server notification URL that StarPay will call when the payment status changes.
+
+Type: `string` — Optional
+
+Example:
+
+```
+"https://usewebhook.com/e1a0be92923764e90e3608b3b17fe38e"
+```
+
+### Successful Callback Example
+
+```json
+{
+	"orderId": "ESCROW-20260729-001",
+	"status": "PAID",
+	"timestamp": "2026-09-09T11:05:37.566Z",
+	"message": "Payment successful",
+	"merchantId": "06783438",
+	"customerId": "CUS-1001",
+	"amount": 2,
+	"payment_type": "USSD_PUSH"
+}
+```
+
+### Failed Callback Example
+
+```json
+{
+	"orderId": "ESCROW-20260729-001",
+	"status": "FAILED",
+	"message": "Payment failed"
+}
+```
+
+
+---
+
+### redirectUrl
+
+The URL where customers will be redirected after completing payment.
+
+Type: `string` — Optional
+
+Example:
+
+```
+"https://merchant.example.com/payment/success"
+```
+
+---
+
+### customerEmail
+
+Customer email address.
+
+Type: `string` — Optional
+
+Example:
+
+```
+"john.doe@example.com"
+```
+
+---
+
+### expiredAt
+
+The date and time when the payment session expires (ISO 8601 format).
+
+Type: `string` — Optional
+
+Example:
+
+```
+"2026-12-31T23:59:59Z"
+```
+
+---
+
+### items
+
+List of products or services included in the transaction.
+
+Type: `array` — Optional
+
+Example:
+
+```json
+[
+  {
+    "productId": "PROD-001",
+    "item_name": "Apple MacBook Pro M3",
+    "image_url": "https://example.com/images/macbook.jpg",
+    "quantity": 1,
+    "unit_price": 8000,
+    "stock_unit": "pcs"
+  }
+]
+```
+
+---
+
+### metadata
+
+Additional custom data associated with the transaction.
+
+Type: `object` — Optional
+
+Example:
+
+```json
+{
+  "orderType": "escrow",
+  "platform": "Marketplace",
+  "customerId": "CUS-1001"
+}
+```
+
+---
+
+### allocations
+
+Details for how the escrow funds will be allocated among merchants.
+
+Type: `array` — Optional
+
+Example:
+
+```json
+[
+  {
+    "merchantId": "06783438",
+    "amount": 1,
+    "metadata": {
+      "merchantName": "Merchant C",
+      "purpose": "Product Payment"
+    }
+  }
+]
+```
+
+
+---
+
+## Response
+
+### Success Response
+
+```json
+{
+  "status": "success",
+  "timestamp": "2026-09-09T10:30:00Z",
+  "message": "Escrow initiated successfully",
+  "data": {
+    "escrowId": "8422701356",
+    "paymentUrl": "https://pay.starpayethiopia.com/checkout/8422701356"
+  }
+}
+```
+
+---
+
+## Next Steps
+
+After initiating an escrow:
+
+1. Redirect the customer to the `paymentUrl`.
+2. Wait for a callback notification from StarPay indicating the funds have been secured.
+3. Verify the callback signature using your Callback Key.
+4. Update the escrow status in your system.
+5. When the condition is met, call the Release Escrow endpoint.
