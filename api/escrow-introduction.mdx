@@ -1,0 +1,26 @@
+---
+title: "Introduction"
+description: "A comprehensive guide to integrating and operating the Star-Pay Escrow service within your marketplace or platform."
+---
+
+## About the Escrow API
+
+This section documents Star-Pay's Escrow APIs: endpoints for initiating an escrow hold, releasing funds to merchants, and canceling an escrow payment. 
+
+The Escrow feature is designed for marketplaces, platforms, or multi-party services that need to hold funds securely until a specific condition or service agreement is met before releasing the payment to the final merchant(s).
+
+For general payment gateway integration and standard transactions, refer to the [API Introduction](./introduction).
+
+## Authentication
+
+Authentication requirements for Escrow endpoints rely on the merchant API secret. You must include your `x-api-secret` header in all requests to securely identify your integration.
+
+Example header (merchant API secret):
+
+```http
+x-api-secret: 0nYjAt5ZoTkYQucoywwQnkPUAuQbe2gSkHCGOFZvINBIVIUkqrypzVrxzg4U7Leq
+```
+
+## API base URLs
+
+- Sandbox: `https://sandbox-api.starpayethiopia.com/v1/starpay-api/`

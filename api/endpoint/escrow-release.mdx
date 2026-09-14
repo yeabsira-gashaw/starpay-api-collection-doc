@@ -1,0 +1,103 @@
+---
+title: "Release Escrow Allocation"
+openapi: "POST /trdp/escrow/release"
+---
+
+# Release Escrow Allocation
+
+Release held escrow funds for a specific merchant allocation once the corresponding product or service has been fulfilled.
+
+In marketplace scenarios where an order is split across multiple vendors, each merchant's allocation can be released independently as their items are shipped or delivered.
+
+## Endpoint
+
+```http
+POST /trdp/escrow/release
+```
+
+## Authentication
+
+Include your API secret in the request header.
+
+Header:
+- `x-api-secret` (string) — Required. Your StarPay API secret key. Generate this key from the Merchant Portal under **API Keys**.
+
+Example:
+
+```http
+x-api-secret: SplFeYdc/Hc5S1CGmVDtETLYUJY/10a38ejamzwb1YH30h+u8sOK2fpTlyKitpPk
+```
+
+---
+
+## Request Body
+
+### escrowId
+
+The unique identifier of the escrow transaction returned during order creation.
+
+Type: `string` — Required
+
+Example:
+
+```json
+"59667344"
+```
+
+---
+
+### merchantId
+
+The merchant ID corresponding to the allocation you want to release.
+
+Type: `string` — Required
+
+Example:
+
+```json
+"01344351"
+```
+
+---
+
+## Example Request
+
+```bash
+curl --request POST \
+  --url https://sandbox-api.starpayethiopia.com/v1/starpay-api/trdp/escrow/release \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-secret: SplFeYdc/Hc5S1CGmVDtETLYUJY/10a38ejamzwb1YH30h+u8sOK2fpTlyKitpPk' \
+  --data '{
+    "escrowId": "59667344",
+    "merchantId": "01344351"
+  }'
+```
+
+---
+
+## Response
+
+### Success Response (`200 OK`)
+
+```json
+{
+  "status": "success",
+  "timestamp": "2026-07-29T11:00:00Z",
+  "message": "Escrow allocation released successfully",
+  "data": {
+    "escrowId": "59667344",
+    "merchantId": "01344351",
+    "amount": 3000,
+    "releaseStatus": "RELEASED",
+    "releasedAt": "2026-07-29T11:00:00Z"
+  }
+}
+```
+
+---
+
+## Notes & Best Practices
+
+- **Partial Releases**: If an order contains multiple merchant allocations, you can call this endpoint separately for each merchant as they fulfill their part of the order.
+- **Idempotency**: Releasing an allocation that has already been released will return the existing release confirmation or an error indicating the allocation was previously settled.
+- **Unreleased Allocations**: Any remaining unreleased allocations continue to be held securely in escrow until explicitly released or cancelled.

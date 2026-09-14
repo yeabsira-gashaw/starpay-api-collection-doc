@@ -1,0 +1,386 @@
+---
+title: "Create Escrow Order"
+openapi: "POST /trdp/escrow/order"
+---
+
+# Create an Escrow Order
+
+Create a new escrow payment session with multi-merchant fund allocations. The funds paid by the customer remain held in escrow by StarPay until you explicitly release each merchant allocation or cancel the escrow.
+
+Use this endpoint for marketplace transactions, multi-vendor checkouts, or service platforms where funds should be held securely until order fulfillment is confirmed.
+
+## Endpoint
+
+```http
+POST /trdp/escrow/order
+```
+
+## Authentication
+
+Include your API secret in the request header.
+
+Header:
+- `x-api-secret` (string) — Required. Your StarPay API secret key. Generate this key from the Merchant Portal under **API Keys**.
+
+Example:
+
+```http
+x-api-secret: SplFeYdc/Hc5S1CGmVDtETLYUJY/10a38ejamzwb1YH30h+u8sOK2fpTlyKitpPk
+```
+
+---
+
+## Request Body
+
+### orderId
+
+Unique merchant order identifier for tracking the order across systems.
+
+Type: `string` — Required
+
+Example:
+
+```json
+"ESCROW-20260729-001"
+```
+
+---
+
+### amount
+
+Total payment amount to be collected from the customer. The sum of all merchant `allocations` should match this total amount.
+
+Type: `number` — Required
+
+Example:
+
+```json
+10000
+```
+
+---
+
+### currency
+
+The currency code used for the transaction.
+
+Currently supported: `ETB`
+
+Type: `string` — Required
+
+Example:
+
+```json
+"ETB"
+```
+
+---
+
+### customerName
+
+The full name of the customer making the payment.
+
+Type: `string` — Required
+
+Example:
+
+```json
+"John Doe"
+```
+
+---
+
+### customerPhoneNumber
+
+The customer's phone number. Used for payment initiation (USSD push, OTP) and verification.
+
+Type: `string` — Required
+
+Example:
+
+```json
+"+251912345678"
+```
+
+---
+
+### items
+
+Array of item objects representing the products or services purchased in this escrow order.
+
+Type: `array` — Required
+
+#### Item Fields
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `productId` | `string` | Yes | Unique identifier for the product or service. |
+| `item_name` | `string` | Yes | Display name of the product. |
+| `quantity` | `integer` | Yes | Number of units purchased. |
+| `unit_price` | `number` | Yes | Price per single unit. |
+| `image_url` | `string` | No | Direct URL to the product image. |
+| `stock_unit` | `string` | No | Unit of measurement (e.g., `pcs`, `kg`, `box`). |
+
+Example:
+
+```json
+[
+  {
+    "productId": "PROD-001",
+    "item_name": "Apple MacBook Pro M3",
+    "image_url": "https://example.com/images/macbook.jpg",
+    "quantity": 1,
+    "unit_price": 8000,
+    "stock_unit": "pcs"
+  },
+  {
+    "productId": "PROD-002",
+    "item_name": "USB-C Adapter",
+    "image_url": "https://example.com/images/adapter.jpg",
+    "quantity": 2,
+    "unit_price": 1000,
+    "stock_unit": "pcs"
+  }
+]
+```
+
+---
+
+### allocations
+
+Array of payout allocations defining how the escrow funds will be distributed among multiple merchants once fulfilled.
+
+Type: `array` — Required
+
+#### Allocation Fields
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `merchantId` | `string` | Yes | The destination merchant ID receiving this portion of funds. |
+| `amount` | `number` | Yes | The amount allocated to this merchant. |
+| `metadata` | `object` | No | Additional metadata such as `merchantName` or payout `purpose`. |
+
+Example:
+
+```json
+[
+  {
+    "merchantId": "01346141",
+    "amount": 7000,
+    "metadata": {
+      "merchantName": "Merchant A",
+      "purpose": "Product Payment"
+    }
+  },
+  {
+    "merchantId": "01344351",
+    "amount": 3000,
+    "metadata": {
+      "merchantName": "Merchant B",
+      "purpose": "Shipping Fee"
+    }
+  }
+]
+```
+
+---
+
+### callbackURL
+
+Server-to-server notification URL that StarPay calls when payment status changes.
+
+Type: `string` (URI) — Optional
+
+Example:
+
+```json
+"https://merchant.example.com/api/payment/callback"
+```
+
+---
+
+### redirectUrl
+
+The URL where customers are redirected after completing payment on the checkout page.
+
+Type: `string` (URI) — Optional
+
+Example:
+
+```json
+"https://merchant.example.com/payment/success"
+```
+
+---
+
+### customerEmail
+
+Customer email address for notifications and receipts.
+
+Type: `string` (email) — Optional
+
+Example:
+
+```json
+"john.doe@example.com"
+```
+
+---
+
+### description
+
+A short description of the escrow order.
+
+Type: `string` — Optional
+
+Example:
+
+```json
+"Escrow payment for marketplace order"
+```
+
+---
+
+### expiredAt
+
+Expiration timestamp in ISO 8601 format. After this timestamp, the payment link will no longer accept payments.
+
+Type: `string` (date-time) — Optional
+
+Example:
+
+```json
+"2026-12-31T23:59:59Z"
+```
+
+---
+
+### metadata
+
+Custom key-value pairs for attaching internal application context to the transaction.
+
+Type: `object` — Optional
+
+Example:
+
+```json
+{
+  "orderType": "escrow",
+  "platform": "Marketplace",
+  "customerId": "CUS-1001"
+}
+```
+
+---
+
+## Example Request
+
+```bash
+curl --request POST \
+  --url https://sandbox-api.starpayethiopia.com/v1/starpay-api/trdp/escrow/order \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-secret: SplFeYdc/Hc5S1CGmVDtETLYUJY/10a38ejamzwb1YH30h+u8sOK2fpTlyKitpPk' \
+  --data '{
+    "orderId": "ESCROW-20260729-001",
+    "redirectUrl": "https://merchant.example.com/payment/success",
+    "amount": 10000,
+    "currency": "ETB",
+    "customerName": "John Doe",
+    "customerPhoneNumber": "+251912345678",
+    "customerEmail": "john.doe@example.com",
+    "callbackURL": "https://merchant.example.com/api/payment/callback",
+    "description": "Escrow payment for marketplace order",
+    "expiredAt": "2026-12-31T23:59:59Z",
+    "items": [
+      {
+        "productId": "PROD-001",
+        "item_name": "Apple MacBook Pro M3",
+        "image_url": "https://example.com/images/macbook.jpg",
+        "quantity": 1,
+        "unit_price": 8000,
+        "stock_unit": "pcs"
+      },
+      {
+        "productId": "PROD-002",
+        "item_name": "USB-C Adapter",
+        "image_url": "https://example.com/images/adapter.jpg",
+        "quantity": 2,
+        "unit_price": 1000,
+        "stock_unit": "pcs"
+      }
+    ],
+    "metadata": {
+      "orderType": "escrow",
+      "platform": "Marketplace",
+      "customerId": "CUS-1001"
+    },
+    "allocations": [
+      {
+        "merchantId": "01346141",
+        "amount": 7000,
+        "metadata": {
+          "merchantName": "Merchant A",
+          "purpose": "Product Payment"
+        }
+      },
+      {
+        "merchantId": "01344351",
+        "amount": 3000,
+        "metadata": {
+          "merchantName": "Merchant B",
+          "purpose": "Shipping Fee"
+        }
+      }
+    ]
+  }'
+```
+
+---
+
+## Response
+
+### Success Response (`201 Created`)
+
+```json
+{
+  "status": "success",
+  "timestamp": "2026-07-29T10:00:00Z",
+  "message": "Escrow order created successfully",
+  "data": {
+    "escrowId": "59667344",
+    "orderId": "ESCROW-20260729-001",
+    "amount": 10000,
+    "currency": "ETB",
+    "status": "PENDING",
+    "paymentUrl": "https://pay.starpayethiopia.com/checkout/59667344",
+    "allocations": [
+      {
+        "merchantId": "01346141",
+        "amount": 7000,
+        "metadata": {
+          "merchantName": "Merchant A",
+          "purpose": "Product Payment"
+        }
+      },
+      {
+        "merchantId": "01344351",
+        "amount": 3000,
+        "metadata": {
+          "merchantName": "Merchant B",
+          "purpose": "Shipping Fee"
+        }
+      }
+    ],
+    "expiredAt": "2026-12-31T23:59:59Z"
+  }
+}
+```
+
+---
+
+## Escrow Lifecycle & Next Steps
+
+1. **Redirect Customer**: Direct the customer to the `paymentUrl` returned in the response to complete payment.
+2. **Handle Webhook**: Listen for the incoming payment callback to verify that funds are held in escrow.
+3. **Fulfill & Release**: Once an item or service is delivered, call [Release Escrow Allocation](/api/endpoint/escrow-release) with the respective `merchantId` and `escrowId`.
+4. **Cancel if Needed**: If the buyer cancels or an issue occurs before fulfillment, call [Cancel Escrow](/api/endpoint/escrow-cancel) to trigger a refund.

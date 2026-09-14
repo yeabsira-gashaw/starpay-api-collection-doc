@@ -1,0 +1,95 @@
+---
+title: "Get Merchant Detail"
+openapi: "GET /trdp/get/merchant/{merchantId}"
+---
+
+# Get Merchant Details
+
+Retrieve account status, profile information, and configuration details for a specific merchant ID.
+
+Use this endpoint to verify merchant information prior to initiating escrow allocations or validating sub-merchant relationships in marketplace integrations.
+
+## Endpoint
+
+```http
+GET /trdp/get/merchant/{merchantId}
+```
+
+## Authentication
+
+Include your API secret and any required partner API keys in the request headers.
+
+Headers:
+- `x-api-secret` (string) — Required. Your StarPay API secret key.
+- `x-order-et-api-key` (string) — Optional. Order.et API Key if accessing partner marketplace resources.
+
+Example Headers:
+
+```http
+x-api-secret: SplFeYdc/Hc5S1CGmVDtETLYUJY/10a38ejamzwb1YH30h+u8sOK2fpTlyKitpPk
+x-order-et-api-key: 9d7b6b4f5d0f8c1e7a9b3c4d6e8f1a2b5c7d9e0f3a1b6c8d2e4f6a8b0c1d3e5
+```
+
+---
+
+## Path Parameters
+
+### merchantId
+
+The unique identifier of the merchant you wish to query.
+
+Type: `string` — Required
+
+Example:
+
+```text
+01344351
+```
+
+---
+
+## Example Request
+
+```bash
+curl --request GET \
+  --url https://sandbox-api.starpayethiopia.com/v1/starpay-api/trdp/get/merchant/01344351 \
+  --header 'x-api-secret: SplFeYdc/Hc5S1CGmVDtETLYUJY/10a38ejamzwb1YH30h+u8sOK2fpTlyKitpPk' \
+  --header 'x-order-et-api-key: 9d7b6b4f5d0f8c1e7a9b3c4d6e8f1a2b5c7d9e0f3a1b6c8d2e4f6a8b0c1d3e5'
+```
+
+---
+
+## Response
+
+### Success Response (`200 OK`)
+
+```json
+{
+  "status": "success",
+  "timestamp": "2026-07-29T12:00:00Z",
+  "message": "Merchant details retrieved successfully",
+  "data": {
+    "merchantId": "01344351",
+    "merchantName": "Sample Store",
+    "phoneNumber": "+251911223344",
+    "email": "merchant@example.com",
+    "status": "ACTIVE",
+    "businessType": "Retail",
+    "createdAt": "2025-01-15T08:00:00Z"
+  }
+}
+```
+
+---
+
+## Response Fields
+
+| Field | Type | Description |
+|---|---|---|
+| `merchantId` | `string` | The unique merchant identifier. |
+| `merchantName` | `string` | Registered legal or trade business name of the merchant. |
+| `phoneNumber` | `string` | Primary contact phone number for the merchant account. |
+| `email` | `string` | Primary business email address. |
+| `status` | `string` | Account status (e.g. `ACTIVE`, `INACTIVE`, `SUSPENDED`). |
+| `businessType` | `string` | Classification of the merchant business. |
+| `createdAt` | `string` | ISO 8601 timestamp when the merchant was onboarded. |
