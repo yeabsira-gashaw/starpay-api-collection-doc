@@ -42,7 +42,6 @@
                 "group": "Escrow Service",
                 "icon": "shield-check",
                 "pages": [
-                  "api/escrow-introduction",
                   "api/endpoint/escrow-order",
                   "api/endpoint/escrow-release",
                   "api/endpoint/escrow-cancel"
@@ -71,7 +70,6 @@
               {
                 "group": "Escrow Endpoints",
                 "pages": [
-                  "api/escrow-introduction",
                   "api/endpoint/escrow-order",
                   "api/endpoint/escrow-release",
                   "api/endpoint/escrow-cancel"
