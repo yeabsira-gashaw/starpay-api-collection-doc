@@ -1,89 +1,26 @@
 ---
 title: "Introduction"
-description: "A comprehensive guide to integrating the Star-Pay Escrow & Payment Split API within your marketplace or platform."
+description: "A comprehensive guide to integrating and operating the Star-Pay Escrow service within your marketplace or platform."
 ---
 
-## About the Escrow & Payment Split API
+## About the Escrow API
 
-The Star-Pay Escrow & Payment Split API enables marketplaces, platforms, and multi-party businesses to securely collect, hold, and distribute payments between multiple merchants or beneficiaries.
+This section documents Star-Pay's Escrow APIs: endpoints for initiating an escrow hold, releasing funds to merchants, and canceling an escrow payment. 
 
-With **Escrow**, funds are held securely after a payment is initiated and remain in escrow until the marketplace or platform determines that the agreed condition has been fulfilled. The platform can then release the funds to the intended merchant or cancel the escrow payment when the transaction should be reversed.
+The Escrow feature is designed for marketplaces, platforms, or multi-party services that need to hold funds securely until a specific condition or service agreement is met before releasing the payment to the final merchant(s).
 
-The **Payment Split** capability allows a single customer payment to be distributed between multiple merchants or beneficiaries based on predefined split rules. Platforms can choose to automatically split the payment when the initial payment is completed, or use the escrow lifecycle to control when the funds are released and distributed.
-
-This makes the API suitable for marketplaces and platforms where a single customer transaction involves multiple merchants, service providers, or other participating parties.
-
-A typical flow can be:
-
-<Steps>
-  <Step title="Initiate Payment">
-    The platform initiates a customer payment through Star-Pay.
-  </Step>
-  <Step title="Automatically Split the Payment (Optional)">
-    If payment splitting is configured, Star-Pay can automatically distribute the payment according to the configured split rules once the initial payment is successfully completed.
-  </Step>
-  <Step title="Hold in Escrow (Optional)">
-    When escrow is used, the funds can remain secured until the platform determines that the transaction conditions have been fulfilled.
-  </Step>
-  <Step title="Release or Cancel">
-    The platform can release the escrowed funds to the configured beneficiary or cancel the escrow payment according to the transaction outcome.
-  </Step>
-  <Step title="Distribute Funds">
-    When applicable, the payment is distributed among the configured merchants or beneficiaries according to the defined split configuration.
-  </Step>
-</Steps>
-
-## Flexible Payment Distribution
-
-Payment splitting can be used independently or together with Escrow:
-
-<CardGroup cols={3}>
-  <Card title="Payment Split only" icon="split">
-    Automatically distribute a successful payment between multiple beneficiaries.
-  </Card>
-  <Card title="Escrow only" icon="shield-check">
-    Hold a payment until it is released or canceled.
-  </Card>
-  <Card title="Escrow + Payment Split" icon="shield-half">
-    Hold the payment in escrow and distribute it according to the configured split rules when the funds are released.
-  </Card>
-</CardGroup>
-
-This provides platforms with flexibility to choose whether payment distribution happens automatically after the initial payment or as part of the escrow release lifecycle.
-
-For standard one-party payments that do not require escrow or payment distribution, refer to the [API Introduction](./introduction).
+For general payment gateway integration and standard transactions, refer to the [API Introduction](./introduction)
 
 ## Authentication
 
-Escrow & Payment Split endpoints require authentication using the merchant API secret. Include your `x-api-secret` header with every request.
+Authentication requirements for Escrow endpoints rely on the merchant API secret. You must include your `x-api-secret` header in all requests to securely identify your integration.
+
+Example header (merchant API secret):
 
 ```http
-x-api-secret: YOUR_API_SECRET
+x-api-secret: 0nYjAt5ZoTkYQucoywwQnkPUAuQbe2gSkHCGOFZvINBIVIUkqrypzVrxzg4U7Leq
 ```
 
-<Warning>
-  Keep your API secret secure and never expose it in client-side applications or publicly accessible code.
-</Warning>
+## API base URLs
 
-## API Base URLs
-
-<Tabs>
-  <Tab title="Sandbox">
-    Use the Sandbox environment for development and integration testing:
-
-    ```
-    https://sandbox-api.starpayethiopia.com/v1/starpay-api/
-    ```
-  </Tab>
-  <Tab title="Production">
-    Use the Production environment for live transactions:
-
-    ```
-    https://api.starpayethiopia.com/v1/starpay-api/
-    ```
-
-    <Note>
-      Production access requires the appropriate Star-Pay merchant configuration and permissions.
-    </Note>
-  </Tab>
-</Tabs>
+- Sandbox: `https://sandbox-api.starpayethiopia.com/v1/starpay-api/`

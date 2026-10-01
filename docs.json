@@ -47,6 +47,13 @@
                   "api/endpoint/escrow-release",
                   "api/endpoint/escrow-cancel"
                 ]
+              },
+              {
+                "group": "Merchant",
+                "icon": "store",
+                "pages": [
+                  "api/endpoint/get-merchant"
+                ]
               }
             ]
           },
@@ -70,7 +77,12 @@
                   "api/endpoint/escrow-cancel"
                 ]
               },
-
+              {
+                "group": "Merchant Endpoints",
+                "pages": [
+                  "api/endpoint/get-merchant"
+                ]
+              },
               {
                 "group": "API test Number",
                 "pages": ["api/test-numbers"]
