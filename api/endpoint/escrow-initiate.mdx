@@ -258,6 +258,21 @@ Example:
 ]
 ```
 
+---
+
+### autoRelease
+
+Specifies whether escrow allocations are automatically released once the customer completes payment.
+
+When set to `true`, StarPay automatically releases the allocated funds to the destination merchants immediately after the initial customer transaction is paid. When set to `false`, funds are held securely in escrow until you release them.
+
+Type: `boolean` — Optional (Default: `false`)
+
+Example:
+
+```json
+false
+```
 
 ---
 
@@ -287,4 +302,4 @@ After initiating an escrow:
 2. Wait for a callback notification from StarPay indicating the funds have been secured.
 3. Verify the callback signature using your Callback Key.
 4. Update the escrow status in your system.
-5. When the condition is met, call the Release Escrow endpoint.
+5. If `autoRelease` is set to `false` (default), call the Release Escrow endpoint when the condition is met. If `autoRelease` is `true`, allocations release automatically upon payment.

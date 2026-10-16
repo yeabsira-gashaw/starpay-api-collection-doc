@@ -1000,6 +1000,12 @@
             "items": {
               "$ref": "#/components/schemas/EscrowAllocation"
             }
+          },
+          "autoRelease": {
+            "type": "boolean",
+            "default": false,
+            "description": "Specifies whether escrow allocations are automatically released to merchants once the initial payment is completed.",
+            "example": false
           }
         },
         "required": [
@@ -1088,6 +1094,11 @@
                 "items": {
                   "$ref": "#/components/schemas/EscrowAllocation"
                 }
+              },
+              "autoRelease": {
+                "type": "boolean",
+                "description": "Indicates whether allocations are configured to release automatically upon payment completion.",
+                "example": false
               },
               "expiredAt": {
                 "type": "string",

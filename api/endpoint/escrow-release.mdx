@@ -98,6 +98,7 @@ curl --request POST \
 
 ## Notes & Best Practices
 
-- **Partial Releases**: If an order contains multiple merchant allocations, you can call this endpoint separately for each merchant as they fulfill their part of the order.
+- **Automatic Release**: When `autoRelease` is set to `true` during order creation, allocations release automatically once the customer completes payment. You do not need to call this endpoint for auto-released orders.
+- **Partial Releases**: If `autoRelease` is `false` and an order contains multiple merchant allocations, you can call this endpoint separately for each merchant as they fulfill their part of the order.
 - **Idempotency**: Releasing an allocation that has already been released will return the existing release confirmation or an error indicating the allocation was previously settled.
 - **Unreleased Allocations**: Any remaining unreleased allocations continue to be held securely in escrow until explicitly released or cancelled.

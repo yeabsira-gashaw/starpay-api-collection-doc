@@ -45,11 +45,11 @@ Payment splitting can be used independently or together with Escrow:
     Hold a payment until it is released or canceled.
   </Card>
   <Card title="Escrow + Payment Split" icon="shield-half">
-    Hold the payment in escrow and distribute it according to the configured split rules when the funds are released.
+    Hold the payment in escrow and distribute it according to the configured split rules when released (or automatically if `autoRelease` is enabled).
   </Card>
 </CardGroup>
 
-This provides platforms with flexibility to choose whether payment distribution happens automatically after the initial payment or as part of the escrow release lifecycle.
+This provides platforms with flexibility to choose whether payment distribution happens automatically after the initial payment (using `autoRelease: true`) or as part of the explicit escrow release lifecycle (using `autoRelease: false`).
 
 For standard one-party payments that do not require escrow or payment distribution, refer to the [API Introduction](./introduction).
 
