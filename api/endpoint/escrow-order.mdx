@@ -185,6 +185,22 @@ Example:
 
 ---
 
+### autoRelease
+
+Specifies whether escrow allocations are automatically released once the customer completes payment.
+
+When set to `true`, StarPay automatically releases the allocated funds to the destination merchants immediately after the initial customer transaction is paid. When set to `false`, funds are held securely in escrow until you explicitly release each allocation or cancel the order.
+
+Type: `boolean` — Optional (Default: `false`)
+
+Example:
+
+```json
+false
+```
+
+---
+
 ### callbackURL
 
 Server-to-server notification URL that StarPay calls when payment status changes.
@@ -291,6 +307,7 @@ curl --request POST \
     "callbackURL": "https://merchant.example.com/api/payment/callback",
     "description": "Escrow payment for marketplace order",
     "expiredAt": "2026-12-31T23:59:59Z",
+    "autoRelease": false,
     "items": [
       {
         "productId": "PROD-001",
@@ -352,6 +369,7 @@ curl --request POST \
     "amount": 10000,
     "currency": "ETB",
     "status": "PENDING",
+    "autoRelease": false,
     "paymentUrl": "https://pay.starpayethiopia.com/checkout/59667344",
     "allocations": [
       {
@@ -381,6 +399,8 @@ curl --request POST \
 ## Escrow Lifecycle & Next Steps
 
 1. **Redirect Customer**: Direct the customer to the `paymentUrl` returned in the response to complete payment.
-2. **Handle Webhook**: Listen for the incoming payment callback to verify that funds are held in escrow.
-3. **Fulfill & Release**: Once an item or service is delivered, call [Release Escrow Allocation](/api/endpoint/escrow-release) with the respective `merchantId` and `escrowId`.
-4. **Cancel if Needed**: If the buyer cancels or an issue occurs before fulfillment, call [Cancel Escrow](/api/endpoint/escrow-cancel) to trigger a refund.
+2. **Handle Webhook**: Listen for the incoming payment callback to verify that the initial payment is completed.
+3. **Fulfill & Release**:
+   - If `autoRelease` is `false` (default): Funds remain held in escrow. Once fulfillment is confirmed, call [Release Escrow Allocation](/api/endpoint/escrow-release) with the respective `merchantId` and `escrowId`.
+   - If `autoRelease` is `true`: Allocations release automatically to the destination merchants immediately after the initial transaction is paid.
+4. **Cancel if Needed**: If the buyer cancels or an issue occurs before fulfillment or release, call [Cancel Escrow](/api/endpoint/escrow-cancel) to trigger a refund.
