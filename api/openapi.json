@@ -999,7 +999,25 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/EscrowAllocation"
-            }
+            },
+            "example": [
+              {
+                "merchantId": "01346141",
+                "amount": 7000,
+                "metadata": {
+                  "merchantName": "Merchant A",
+                  "purpose": "Product Payment"
+                }
+              },
+              {
+                "merchantId": "01250744",
+                "amount": 3000,
+                "metadata": {
+                  "merchantName": "Merchant B",
+                  "purpose": "Product Payment"
+                }
+              }
+            ]
           },
           "autoRelease": {
             "type": "boolean",
