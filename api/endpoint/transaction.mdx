@@ -112,12 +112,13 @@ Type: `array` — Required
 
 Example:
 
-```
+```json
 [
 	{
-		"name": "VANS Shoe",
+		"productId": "6812220726f547936d6c1976",
+		"itemName": "VANS Shoe",
 		"quantity": 1,
-		"price": 1000
+		"unitPrice": 1000
 	}
 ]
 ```
@@ -140,13 +141,13 @@ Example:
 
 ```json
 {
-	"billRefNo": "33WJ8946WB",
+	"bill_ref_no": "33WJ8946WB",
 	"status": "PAID",
 	"timestamp": "2025-12-10T11:05:37.566Z",
 	"message": "Payment successful",
-	"merchantId": "6888dc21ee7cbfe63657144f",
-	"customerId": "656445e6-20fa-440d-b8c9-0a588d1ca05b",
-	"externalReferenceId": "CLA9SR5XR9",
+	"merchant_id": "6888dc21ee7cbfe63657144f",
+	"customer_id": "656445e6-20fa-440d-b8c9-0a588d1ca05b",
+	"external_reference_id": "CLA9SR5XR9",
 	"amount": 1,
 	"payment_type": "USSD_PUSH",
 	"receipt_url": "https://receipt.starpayethiopia.com/receiptqa/WST-33WJ8946WB"
@@ -157,7 +158,7 @@ Example:
 
 ```json
 {
-	"billRefNo": "5I974ZLE60",
+	"bill_ref_no": "5I974ZLE60",
 	"status": "FAILED",
 	"message": "Payment failed"
 }
@@ -254,8 +255,8 @@ curl --request POST \
 	"timestamp": "2025-07-01T10:30:00Z",
 	"message": "Order created successfully",
 	"data": {
-		"billRefNo": "33WJ8946WB",
-		"paymentUrl": "https://pay.starpayethiopia.com/checkout/33WJ8946WB"
+		"bill_ref_no": "33WJ8946WB",
+		"payment_url": "https://pay.starpayethiopia.com/checkout/33WJ8946WB"
 	}
 }
 ```
@@ -266,7 +267,7 @@ curl --request POST \
 
 After creating a transaction:
 
-1. Redirect the customer to the `paymentUrl`.
+1. Redirect the customer to the `payment_url`.
 2. Wait for a callback notification from StarPay.
 3. Verify the callback signature using your Callback Key (see [Callback Signature Verification](../sign)).
 4. Update the payment status in your system.
