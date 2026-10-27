@@ -112,13 +112,12 @@ Type: `array` — Required
 
 Example:
 
-```json
+```
 [
 	{
-		"productId": "6812220726f547936d6c1976",
-		"itemName": "VANS Shoe",
+		"name": "VANS Shoe",
 		"quantity": 1,
-		"unitPrice": 1000
+		"price": 1000
 	}
 ]
 ```
@@ -141,24 +140,34 @@ Example:
 
 ```json
 {
-	"bill_ref_no": "33WJ8946WB",
-	"status": "PAID",
-	"timestamp": "2025-12-10T11:05:37.566Z",
-	"message": "Payment successful",
-	"merchant_id": "6888dc21ee7cbfe63657144f",
-	"customer_id": "656445e6-20fa-440d-b8c9-0a588d1ca05b",
-	"external_reference_id": "CLA9SR5XR9",
-	"amount": 1,
-	"payment_type": "USSD_PUSH",
-	"receipt_url": "https://receipt.starpayethiopia.com/receiptqa/WST-33WJ8946WB"
+  "transactionId": "txn_8f7a2b91",
+  "billRefNo": "WST-20261027-000123",
+  "status": "SUCCESS",
+  "amount": 1000.00,
+  "customerName": "Abebe Kebede",
+  "customerPhoneNumber": "0912345678",
+  "merchantName": "ABC Trading PLC",
+  "merchantId": "merchant_12345",
+  "externalReference": "EXT-REF-20261027-001",
+  "paymentChannel": "USSD",
+  "paidAt": "2026-10-27T12:30:45Z",
+  "redirectUrl": "https://merchant.example.com/payment/success",
+  "commissionAmount": 15.00,
+  "paidAmount": 985.00,
+  "currency": "ETB",
+  "timestamp": {
+    "seconds": "1793104245",
+    "nanos": 0
+  }
 }
+
 ```
 
 ### Failed Callback Example
 
 ```json
 {
-	"bill_ref_no": "5I974ZLE60",
+	"billRefNo": "5I974ZLE60",
 	"status": "FAILED",
 	"message": "Payment failed"
 }
@@ -267,7 +276,7 @@ curl --request POST \
 
 After creating a transaction:
 
-1. Redirect the customer to the `payment_url`.
+1. Redirect the customer to the `paymentUrl`.
 2. Wait for a callback notification from StarPay.
 3. Verify the callback signature using your Callback Key (see [Callback Signature Verification](../sign)).
 4. Update the payment status in your system.
