@@ -130,12 +130,12 @@ Example:
 
 ```json
 {
-	"orderId": "ESCROW-20260729-001",
+	"order_id": "ESCROW-20260729-001",
 	"status": "PAID",
 	"timestamp": "2026-09-09T11:05:37.566Z",
 	"message": "Payment successful",
-	"merchantId": "06783438",
-	"customerId": "CUS-1001",
+	"merchant_id": "06783438",
+	"customer_id": "CUS-1001",
 	"amount": 2,
 	"payment_type": "USSD_PUSH"
 }
@@ -145,7 +145,7 @@ Example:
 
 ```json
 {
-	"orderId": "ESCROW-20260729-001",
+	"order_id": "ESCROW-20260729-001",
 	"status": "FAILED",
 	"message": "Payment failed"
 }
@@ -208,11 +208,11 @@ Example:
 [
   {
     "productId": "PROD-001",
-    "item_name": "Apple MacBook Pro M3",
-    "image_url": "https://example.com/images/macbook.jpg",
+    "itemName": "Apple MacBook Pro M3",
+    "imageUrl": "https://example.com/images/macbook.jpg",
     "quantity": 1,
-    "unit_price": 8000,
-    "stock_unit": "pcs"
+    "unitPrice": 8000,
+    "stockUnit": "pcs"
   }
 ]
 ```
@@ -286,8 +286,8 @@ false
   "timestamp": "2026-09-09T10:30:00Z",
   "message": "Escrow initiated successfully",
   "data": {
-    "escrowId": "8422701356",
-    "paymentUrl": "https://pay.starpayethiopia.com/checkout/8422701356"
+    "escrow_id": "8422701356",
+    "payment_url": "https://pay.starpayethiopia.com/checkout/8422701356"
   }
 }
 ```
@@ -298,7 +298,7 @@ false
 
 After initiating an escrow:
 
-1. Redirect the customer to the `paymentUrl`.
+1. Redirect the customer to the `payment_url`.
 2. Wait for a callback notification from StarPay indicating the funds have been secured.
 3. Verify the callback signature using your Callback Key.
 4. Update the escrow status in your system.

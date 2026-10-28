@@ -60,17 +60,6 @@
           "500": {
             "$ref": "#/components/responses/ServerError"
           }
-        },
-        "requestBody": {
-          "required": true,
-          "description": "The request body(payload) includes the following fields:\n\n- `api_secret`\n- `callbackURL`\n If you want to receive the customer back in your application after the transaction, you can provide a callback URL. Starpay will automatically redirect the user to your URL when the payment is completed successfully or Failed.\n## If you provide a callbackURL, StarPay will send the following response to that URL after a successful payment.\n\n```json \n {\n \n billRefNo: '33WJ8946WB',\n status: 'PAID' OR 'SETTLED',\n timestamp: '2025-12-10T11:05:37.566Z',\n message: 'Payment successful',\n merchantId: '6888dc21ee7cbfe63657144f',\n customerId: '656445e6-20fa-440d-b8c9-0a588d1ca05b',\n externalReferenceId: 'CLA9SR5XR9',\n amount: 1,\n payment_type: 'USSD_PUSH',\n receipt_url: 'https://receipt.starpayethiopia.com/receiptqa/WST-33WJ8946WB'\n}\n\n```\n\n## The error response for failed payments.\n\n```json \n {\n \n  billRefNo: '5I974ZLE60',\n  status: 'FAILED',\n  message: 'Payment failed'\n}\n\n```",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/createOrder"
-              }
-            }
-          }
         }
       }
     },
@@ -455,16 +444,16 @@
             "type": "integer",
             "example": 1
           },
-          "item_name": {
+          "itemName": {
             "type": "string",
             "example": "mobile"
           },
-          "unit_price": {
+          "unitPrice": {
             "type": "number",
             "example": 500
           }
         },
-        "required": ["productId", "quantity", "item_name", "unit_price"]
+        "required": ["productId", "quantity", "itemName", "unitPrice"]
       },
       "PaymentRequest": {
         "type": "object",
@@ -475,7 +464,7 @@
           },
           "description": {
             "type": "string",
-            "example": "VANS+"
+            "example": "VANS"
           },
           "currency": {
             "type": "string",
@@ -529,16 +518,16 @@
                   "type": "integer",
                   "example": 1
                 },
-                "item_name": {
+                "itemName": {
                   "type": "string",
                   "example": "mobile"
                 },
-                "unit_price": {
+                "unitPrice": {
                   "type": "number",
                   "example": 500
                 }
               },
-              "required": ["productId", "quantity", "item_name", "unit_price"]
+              "required": ["productId", "quantity", "itemName", "unitPrice"]
             }
           }
         },
@@ -883,11 +872,11 @@
             "type": "string",
             "example": "PROD-001"
           },
-          "item_name": {
+          "itemName": {
             "type": "string",
             "example": "Apple MacBook Pro M3"
           },
-          "image_url": {
+          "imageUrl": {
             "type": "string",
             "format": "uri",
             "example": "https://example.com/images/macbook.jpg"
@@ -896,16 +885,16 @@
             "type": "integer",
             "example": 1
           },
-          "unit_price": {
+          "unitPrice": {
             "type": "number",
             "example": 8000
           },
-          "stock_unit": {
+          "stockUnit": {
             "type": "string",
             "example": "pcs"
           }
         },
-        "required": ["productId", "item_name", "quantity", "unit_price"]
+        "required": ["productId", "itemName", "quantity", "unitPrice"]
       },
       "EscrowAllocation": {
         "type": "object",
@@ -933,6 +922,33 @@
           }
         },
         "required": ["merchantId", "amount"]
+      },
+      "EscrowAllocationResponse": {
+        "type": "object",
+        "properties": {
+          "merchant_id": {
+            "type": "string",
+            "example": "01346141"
+          },
+          "amount": {
+            "type": "number",
+            "example": 7000
+          },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "merchant_name": {
+                "type": "string",
+                "example": "Merchant A"
+              },
+              "purpose": {
+                "type": "string",
+                "example": "Product Payment"
+              }
+            }
+          }
+        },
+        "required": ["merchant_id", "amount"]
       },
       "CreateEscrowOrderRequest": {
         "type": "object",
@@ -999,25 +1015,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/EscrowAllocation"
-            },
-            "example": [
-              {
-                "merchantId": "01346141",
-                "amount": 7000,
-                "metadata": {
-                  "merchantName": "Merchant A",
-                  "purpose": "Product Payment"
-                }
-              },
-              {
-                "merchantId": "01250744",
-                "amount": 3000,
-                "metadata": {
-                  "merchantName": "Merchant B",
-                  "purpose": "Product Payment"
-                }
-              }
-            ]
+            }
           },
           "autoRelease": {
             "type": "boolean",
@@ -1082,11 +1080,11 @@
           "data": {
             "type": "object",
             "properties": {
-              "escrowId": {
+              "escrow_id": {
                 "type": "string",
                 "example": "59667344"
               },
-              "orderId": {
+              "order_id": {
                 "type": "string",
                 "example": "ESCROW-20260729-001"
               },
@@ -1102,7 +1100,7 @@
                 "type": "string",
                 "example": "PENDING"
               },
-              "paymentUrl": {
+              "payment_url": {
                 "type": "string",
                 "format": "uri",
                 "example": "https://pay.starpayethiopia.com/checkout/59667344"
@@ -1110,33 +1108,15 @@
               "allocations": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/EscrowAllocation"
-                },
-                "example": [
-                  {
-                    "merchantId": "01346141",
-                    "amount": 7000,
-                    "metadata": {
-                      "merchantName": "Merchant A",
-                      "purpose": "Product Payment"
-                    }
-                  },
-                  {
-                    "merchantId": "01250744",
-                    "amount": 3000,
-                    "metadata": {
-                      "merchantName": "Merchant B",
-                      "purpose": "Product Payment"
-                    }
-                  }
-                ]
+                  "$ref": "#/components/schemas/EscrowAllocationResponse"
+                }
               },
-              "autoRelease": {
+              "auto_release": {
                 "type": "boolean",
                 "description": "Indicates whether allocations are configured to release automatically upon payment completion.",
                 "example": false
               },
-              "expiredAt": {
+              "expired_at": {
                 "type": "string",
                 "format": "date-time",
                 "example": "2026-12-31T23:59:59Z"
@@ -1165,11 +1145,11 @@
           "data": {
             "type": "object",
             "properties": {
-              "escrowId": {
+              "escrow_id": {
                 "type": "string",
                 "example": "59667344"
               },
-              "merchantId": {
+              "merchant_id": {
                 "type": "string",
                 "example": "01344351"
               },
@@ -1177,11 +1157,11 @@
                 "type": "number",
                 "example": 3000
               },
-              "releaseStatus": {
+              "release_status": {
                 "type": "string",
                 "example": "RELEASED"
               },
-              "releasedAt": {
+              "released_at": {
                 "type": "string",
                 "format": "date-time",
                 "example": "2026-07-29T11:00:00Z"
@@ -1210,7 +1190,7 @@
           "data": {
             "type": "object",
             "properties": {
-              "escrowId": {
+              "escrow_id": {
                 "type": "string",
                 "example": "59667344"
               },
@@ -1218,7 +1198,7 @@
                 "type": "string",
                 "example": "CANCELLED"
               },
-              "cancelledAt": {
+              "cancelled_at": {
                 "type": "string",
                 "format": "date-time",
                 "example": "2026-07-29T11:30:00Z"
@@ -1247,15 +1227,15 @@
           "data": {
             "type": "object",
             "properties": {
-              "merchantId": {
+              "merchant_id": {
                 "type": "string",
                 "example": "01344351"
               },
-              "merchantName": {
+              "merchant_name": {
                 "type": "string",
                 "example": "Sample Store"
               },
-              "phoneNumber": {
+              "phone_number": {
                 "type": "string",
                 "example": "+251911223344"
               },
@@ -1268,11 +1248,11 @@
                 "type": "string",
                 "example": "ACTIVE"
               },
-              "businessType": {
+              "business_type": {
                 "type": "string",
                 "example": "Retail"
               },
-              "createdAt": {
+              "created_at": {
                 "type": "string",
                 "format": "date-time",
                 "example": "2025-01-15T08:00:00Z"

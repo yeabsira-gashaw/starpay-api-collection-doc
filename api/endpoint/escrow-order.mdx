@@ -115,11 +115,11 @@ Type: `array` — Required
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `productId` | `string` | Yes | Unique identifier for the product or service. |
-| `item_name` | `string` | Yes | Display name of the product. |
+| `itemName` | `string` | Yes | Display name of the product. |
 | `quantity` | `integer` | Yes | Number of units purchased. |
-| `unit_price` | `number` | Yes | Price per single unit. |
-| `image_url` | `string` | No | Direct URL to the product image. |
-| `stock_unit` | `string` | No | Unit of measurement (e.g., `pcs`, `kg`, `box`). |
+| `unitPrice` | `number` | Yes | Price per single unit. |
+| `imageUrl` | `string` | No | Direct URL to the product image. |
+| `stockUnit` | `string` | No | Unit of measurement (e.g., `pcs`, `kg`, `box`). |
 
 Example:
 
@@ -127,19 +127,19 @@ Example:
 [
   {
     "productId": "PROD-001",
-    "item_name": "Apple MacBook Pro M3",
-    "image_url": "https://example.com/images/macbook.jpg",
+    "itemName": "Apple MacBook Pro M3",
+    "imageUrl": "https://example.com/images/macbook.jpg",
     "quantity": 1,
-    "unit_price": 8000,
-    "stock_unit": "pcs"
+    "unitPrice": 8000,
+    "stockUnit": "pcs"
   },
   {
     "productId": "PROD-002",
-    "item_name": "USB-C Adapter",
-    "image_url": "https://example.com/images/adapter.jpg",
+    "itemName": "USB-C Adapter",
+    "imageUrl": "https://example.com/images/adapter.jpg",
     "quantity": 2,
-    "unit_price": 1000,
-    "stock_unit": "pcs"
+    "unitPrice": 1000,
+    "stockUnit": "pcs"
   }
 ]
 ```
@@ -311,19 +311,19 @@ curl --request POST \
     "items": [
       {
         "productId": "PROD-001",
-        "item_name": "Apple MacBook Pro M3",
-        "image_url": "https://example.com/images/macbook.jpg",
+        "itemName": "Apple MacBook Pro M3",
+        "imageUrl": "https://example.com/images/macbook.jpg",
         "quantity": 1,
-        "unit_price": 8000,
-        "stock_unit": "pcs"
+        "unitPrice": 8000,
+        "stockUnit": "pcs"
       },
       {
         "productId": "PROD-002",
-        "item_name": "USB-C Adapter",
-        "image_url": "https://example.com/images/adapter.jpg",
+        "itemName": "USB-C Adapter",
+        "imageUrl": "https://example.com/images/adapter.jpg",
         "quantity": 2,
-        "unit_price": 1000,
-        "stock_unit": "pcs"
+        "unitPrice": 1000,
+        "stockUnit": "pcs"
       }
     ],
     "metadata": {
@@ -364,32 +364,32 @@ curl --request POST \
   "timestamp": "2026-07-29T10:00:00Z",
   "message": "Escrow order created successfully",
   "data": {
-    "escrowId": "59667344",
-    "orderId": "ESCROW-20260729-001",
+    "escrow_id": "59667344",
+    "order_id": "ESCROW-20260729-001",
     "amount": 10000,
     "currency": "ETB",
     "status": "PENDING",
-    "autoRelease": false,
-    "paymentUrl": "https://pay.starpayethiopia.com/checkout/59667344",
+    "auto_release": false,
+    "payment_url": "https://pay.starpayethiopia.com/checkout/59667344",
     "allocations": [
       {
-        "merchantId": "01346141",
+        "merchant_id": "01346141",
         "amount": 7000,
         "metadata": {
-          "merchantName": "Merchant A",
+          "merchant_name": "Merchant A",
           "purpose": "Product Payment"
         }
       },
       {
-        "merchantId": "01344351",
+        "merchant_id": "01344351",
         "amount": 3000,
         "metadata": {
-          "merchantName": "Merchant B",
+          "merchant_name": "Merchant B",
           "purpose": "Shipping Fee"
         }
       }
     ],
-    "expiredAt": "2026-12-31T23:59:59Z"
+    "expired_at": "2026-12-31T23:59:59Z"
   }
 }
 ```
@@ -398,7 +398,7 @@ curl --request POST \
 
 ## Escrow Lifecycle & Next Steps
 
-1. **Redirect Customer**: Direct the customer to the `paymentUrl` returned in the response to complete payment.
+1. **Redirect Customer**: Direct the customer to the `payment_url` returned in the response to complete payment.
 2. **Handle Webhook**: Listen for the incoming payment callback to verify that the initial payment is completed.
 3. **Fulfill & Release**:
    - If `autoRelease` is `false` (default): Funds remain held in escrow. Once fulfillment is confirmed, call [Release Escrow Allocation](/api/endpoint/escrow-release) with the respective `merchantId` and `escrowId`.
