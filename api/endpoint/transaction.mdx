@@ -227,8 +227,8 @@ Example:
 
 ```json
 {
-	"order_reference": "ORD-2025-001",
-	"customer_type": "premium"
+	"orderReference": "ORD-2025-001",
+	"customField": "any value"
 }
 ```
 
@@ -238,18 +238,34 @@ Example:
 
 ```bash
 curl --request POST \
-	--url https://api.starpayethiopia.com/trdp/order \
-	--header 'Content-Type: application/json' \
-	--header 'x-api-secret: YOUR_API_SECRET' \
-	--data '{
-		"amount": 1000,
-		"currency": "ETB",
-		"description": "Purchase of VANS Shoes",
-		"customerName": "John Doe",
-		"customerPhoneNumber": "+251987654567",
-		"callbackURL": "https://example.com/webhooks/starpay",
-		"redirectUrl": "https://yourstore.com/payment-success"
-	}'
+  --url https://sandbox-api.starpayethiopia.com/v1/starpay-api/trdp/order \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-secret: <x-api-secret>' \
+  --data '
+{
+  "amount": 1000,
+  "description": "VANS",
+  "currency": "ETB",
+  "customerName": "test",
+  "customerPhoneNumber": "+251987654567",
+  "items": [
+    {
+      "productId": "6812220726f547936d6c1976",
+      "quantity": 1,
+      "itemName": "mobile",
+      "unitPrice": 500
+    }
+  ],
+  "callbackURL": "https://example.com/start_pay_callback",
+  "customerEmail": "test12@gmail.com",
+  "expiredAt": "2028-07-01T23:59:59Z",
+  "redirectUrl": "https://google.com",
+  "metadata": {
+    "orderReference": "ORD-2028-001",
+    "customField": "any value"
+  }
+}
+'
 ```
 
 ---

@@ -67,6 +67,40 @@
           "500": {
             "$ref": "#/components/responses/ServerError"
           }
+        },
+        "requestBody": {
+          "required": true,
+          "description": "Payment order creation payload.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createOrder"
+              },
+              "example": {
+                "amount": 1000,
+                "description": "VANS",
+                "currency": "ETB",
+                "customerName": "test",
+                "customerPhoneNumber": "+251987654567",
+                "items": [
+                  {
+                    "productId": "6812220726f547936d6c1976",
+                    "quantity": 1,
+                    "itemName": "mobile",
+                    "unitPrice": 500
+                  }
+                ],
+                "callbackURL": "https://example.com/start_pay_callback",
+                "customerEmail": "test12@gmail.com",
+                "expiredAt": "2025-07-01T23:59:59Z",
+                "redirectUrl": "https://google.com",
+                "metadata": {
+                  "orderReference": "ORD-2025-001",
+                  "customField": "any value"
+                }
+              }
+            }
+          }
         }
       }
     },
