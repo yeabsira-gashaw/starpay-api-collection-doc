@@ -137,7 +137,25 @@ Example:
 	"merchant_id": "06783438",
 	"customer_id": "CUS-1001",
 	"amount": 2,
-	"payment_type": "USSD_PUSH"
+	"payment_type": "USSD_PUSH",
+	"allocations": [
+		{
+			"merchant_id": "01346141",
+			"amount": 1,
+			"metadata": {
+				"merchant_name": "Merchant A",
+				"purpose": "Product Payment"
+			}
+		},
+		{
+			"merchant_id": "01344351",
+			"amount": 1,
+			"metadata": {
+				"merchant_name": "Merchant B",
+				"purpose": "Shipping Fee"
+			}
+		}
+	]
 }
 ```
 
@@ -239,7 +257,7 @@ Example:
 
 ### allocations
 
-Details for how the escrow funds will be allocated among merchants.
+Array of payout allocations defining how the escrow funds will be distributed among multiple merchants once fulfilled.
 
 Type: `array` — Optional
 
@@ -248,11 +266,19 @@ Example:
 ```json
 [
   {
-    "merchantId": "06783438",
+    "merchantId": "01346141",
     "amount": 1,
     "metadata": {
-      "merchantName": "Merchant C",
+      "merchantName": "Merchant A",
       "purpose": "Product Payment"
+    }
+  },
+  {
+    "merchantId": "01344351",
+    "amount": 1,
+    "metadata": {
+      "merchantName": "Merchant B",
+      "purpose": "Shipping Fee"
     }
   }
 ]

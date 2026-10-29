@@ -15,7 +15,9 @@
     "/trdp/order": {
       "post": {
         "operationId": "setorder",
-        "tags": ["thirdparty"],
+        "tags": [
+          "thirdparty"
+        ],
         "summary": "create order",
         "x-codeSamples": [
           {
@@ -43,7 +45,12 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/OrderCreationResponse",
-                  "required": ["status", "timestamp", "message", "data"]
+                  "required": [
+                    "status",
+                    "timestamp",
+                    "message",
+                    "data"
+                  ]
                 }
               }
             }
@@ -66,7 +73,9 @@
     "/trdp/verify": {
       "post": {
         "operationId": "verifypayment",
-        "tags": ["thirdparty"],
+        "tags": [
+          "thirdparty"
+        ],
         "summary": "for payment verification",
         "x-codeSamples": [
           {
@@ -105,7 +114,12 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PaymentVerificationResponse",
-                  "required": ["status", "timestamp", "message", "data"]
+                  "required": [
+                    "status",
+                    "timestamp",
+                    "message",
+                    "data"
+                  ]
                 }
               }
             }
@@ -128,7 +142,9 @@
     "/trdp/escrow/order": {
       "post": {
         "operationId": "createEscrowOrder",
-        "tags": ["Escrow"],
+        "tags": [
+          "Escrow"
+        ],
         "summary": "Create Escrow Order",
         "description": "Initiate a new escrow payment order with customizable multi-merchant fund allocations.",
         "x-codeSamples": [
@@ -195,7 +211,9 @@
     "/trdp/escrow/release": {
       "post": {
         "operationId": "releaseEscrowAllocation",
-        "tags": ["Escrow"],
+        "tags": [
+          "Escrow"
+        ],
         "summary": "Release Escrow Allocation",
         "description": "Release held escrow funds for a specific merchant allocation upon successful order fulfillment.",
         "x-codeSamples": [
@@ -262,7 +280,9 @@
     "/trdp/escrow/cancel": {
       "post": {
         "operationId": "cancelEscrow",
-        "tags": ["Escrow"],
+        "tags": [
+          "Escrow"
+        ],
         "summary": "Cancel Escrow",
         "description": "Cancel an existing escrow transaction and initiate buyer refund if applicable.",
         "x-codeSamples": [
@@ -329,7 +349,9 @@
     "/trdp/get/merchant/{merchantId}": {
       "get": {
         "operationId": "getMerchantDetail",
-        "tags": ["Merchant"],
+        "tags": [
+          "Merchant"
+        ],
         "summary": "Get Merchant Detail",
         "description": "Retrieve information and status for a specific merchant ID.",
         "x-codeSamples": [
@@ -453,7 +475,12 @@
             "example": 500
           }
         },
-        "required": ["productId", "quantity", "itemName", "unitPrice"]
+        "required": [
+          "productId",
+          "quantity",
+          "itemName",
+          "unitPrice"
+        ]
       },
       "PaymentRequest": {
         "type": "object",
@@ -527,7 +554,12 @@
                   "example": 500
                 }
               },
-              "required": ["productId", "quantity", "itemName", "unitPrice"]
+              "required": [
+                "productId",
+                "quantity",
+                "itemName",
+                "unitPrice"
+              ]
             }
           }
         },
@@ -564,10 +596,17 @@
                 "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiM2IxNjljN2Q1OTU3ZjgyOWQ3YzI1ZGQ1Mjc1NjZlNWUuMWNmMDcxYmJlYzA5OTNmNWRiOGFhNzMwMWQyM2UwZmVmMWM4MmJiZmM3YzQ0NDQzNWViZDgxNGZlZDYxODQ3ODQ5YmIyMTRmNDY3ZDA1ODgzMmQxMjdiNDE1OTMyOGNkM2NkZGMyNTNiNmRhOGNlMjZjZmYwMmE1YmI1OTY2MjIxZmUzNjY4YTVhMmFmOWQxNTEyODhhNTAxNGZhNmQyOTNkNzVkZjIxYzk1MGQxZTdhZDQ2ZGNhYTM1NTUwMjdlNWU4OWQ0YmFiZjc0MTlkNDc4ZTFhZTZmOTE4Mjc3YWZkMDc3MzMzMzdlZDNiZGU3MDRlY2E1NzM1MDQ3OGU5YTJhMWVkNTExNzFlNTI4NWViMzdiMGQ2ZGJiMDc0YTJiMWE3NjI1MDIxMjY4ZTdjYTZmNDgwOTczOWVmYjE5NmI1YTYzZjQwZmUzZWU4NjMzMGYyODBmNmY4OTY5ODUyZjUzOWU5NGMzNGJhNjhmZDg3MzNmNDVkNjJhODhiOTYzZDkzYS43MzhjMmNiMzY4NDc0YmM0NzljNGVkODY4NzYxODk3YiIsImlhdCI6MTc0NjUyMDI4OCwiZXhwIjoxNzQ2NjA2Njg4fQ.1QzHPn3r2gzYv5rReuSi1l1buF3CrYKv_9eQKlcvzYw"
               }
             },
-            "required": ["access_token"]
+            "required": [
+              "access_token"
+            ]
           }
         },
-        "required": ["status", "timestamp", "message", "data"]
+        "required": [
+          "status",
+          "timestamp",
+          "message",
+          "data"
+        ]
       },
       "trdpSessionResponse": {
         "description": "Create session.",
@@ -894,7 +933,12 @@
             "example": "pcs"
           }
         },
-        "required": ["productId", "itemName", "quantity", "unitPrice"]
+        "required": [
+          "productId",
+          "itemName",
+          "quantity",
+          "unitPrice"
+        ]
       },
       "EscrowAllocation": {
         "type": "object",
@@ -921,7 +965,18 @@
             }
           }
         },
-        "required": ["merchantId", "amount"]
+        "required": [
+          "merchantId",
+          "amount"
+        ],
+        "example": {
+          "merchantId": "01346141",
+          "amount": 7000,
+          "metadata": {
+            "merchantName": "Merchant A",
+            "purpose": "Product Payment"
+          }
+        }
       },
       "EscrowAllocationResponse": {
         "type": "object",
@@ -948,7 +1003,18 @@
             }
           }
         },
-        "required": ["merchant_id", "amount"]
+        "required": [
+          "merchant_id",
+          "amount"
+        ],
+        "example": {
+          "merchant_id": "01346141",
+          "amount": 7000,
+          "metadata": {
+            "merchant_name": "Merchant A",
+            "purpose": "Product Payment"
+          }
+        }
       },
       "CreateEscrowOrderRequest": {
         "type": "object",
@@ -1015,7 +1081,25 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/EscrowAllocation"
-            }
+            },
+            "example": [
+              {
+                "merchantId": "01346141",
+                "amount": 7000,
+                "metadata": {
+                  "merchantName": "Merchant A",
+                  "purpose": "Product Payment"
+                }
+              },
+              {
+                "merchantId": "01344351",
+                "amount": 3000,
+                "metadata": {
+                  "merchantName": "Merchant B",
+                  "purpose": "Shipping Fee"
+                }
+              }
+            ]
           },
           "autoRelease": {
             "type": "boolean",
@@ -1048,7 +1132,10 @@
             "description": "Merchant ID to receive payout."
           }
         },
-        "required": ["escrowId", "merchantId"]
+        "required": [
+          "escrowId",
+          "merchantId"
+        ]
       },
       "CancelEscrowRequest": {
         "type": "object",
@@ -1059,7 +1146,9 @@
             "description": "Unique escrow transaction identifier to cancel."
           }
         },
-        "required": ["escrowId"]
+        "required": [
+          "escrowId"
+        ]
       },
       "EscrowOrderResponse": {
         "type": "object",
@@ -1109,7 +1198,25 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/EscrowAllocationResponse"
-                }
+                },
+                "example": [
+                  {
+                    "merchant_id": "01346141",
+                    "amount": 7000,
+                    "metadata": {
+                      "merchant_name": "Merchant A",
+                      "purpose": "Product Payment"
+                    }
+                  },
+                  {
+                    "merchant_id": "01344351",
+                    "amount": 3000,
+                    "metadata": {
+                      "merchant_name": "Merchant B",
+                      "purpose": "Shipping Fee"
+                    }
+                  }
+                ]
               },
               "auto_release": {
                 "type": "boolean",
@@ -1124,7 +1231,12 @@
             }
           }
         },
-        "required": ["status", "timestamp", "message", "data"]
+        "required": [
+          "status",
+          "timestamp",
+          "message",
+          "data"
+        ]
       },
       "EscrowReleaseResponse": {
         "type": "object",
@@ -1169,7 +1281,12 @@
             }
           }
         },
-        "required": ["status", "timestamp", "message", "data"]
+        "required": [
+          "status",
+          "timestamp",
+          "message",
+          "data"
+        ]
       },
       "EscrowCancelResponse": {
         "type": "object",
@@ -1206,7 +1323,12 @@
             }
           }
         },
-        "required": ["status", "timestamp", "message", "data"]
+        "required": [
+          "status",
+          "timestamp",
+          "message",
+          "data"
+        ]
       },
       "MerchantDetailResponse": {
         "type": "object",
@@ -1260,7 +1382,12 @@
             }
           }
         },
-        "required": ["status", "timestamp", "message", "data"]
+        "required": [
+          "status",
+          "timestamp",
+          "message",
+          "data"
+        ]
       }
     },
     "responses": {
