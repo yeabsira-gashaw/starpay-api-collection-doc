@@ -104,6 +104,20 @@ Example:
 
 ---
 
+### tinNumber
+
+The Tax Identification Number (TIN) of the merchant initiating the transaction. Used for tax reporting and merchant verification purposes.
+
+Type: `string` — Required
+
+Example:
+
+```
+"0012345678"
+```
+
+---
+
 ### items
 
 List of products or services included in the transaction.
@@ -140,27 +154,22 @@ Example:
 
 ```json
 {
-  "transactionId": "txn_8f7a2b91",
-  "billRefNo": "WST-20261027-000123",
-  "status": "SUCCESS",
-  "amount": 1000.00,
-  "customerName": "Abebe Kebede",
-  "customerPhoneNumber": "0912345678",
-  "merchantName": "ABC Trading PLC",
-  "merchantId": "merchant_12345",
-  "externalReference": "EXT-REF-20261027-001",
-  "paymentChannel": "USSD",
-  "paidAt": "2026-10-27T12:30:45Z",
-  "redirectUrl": "https://merchant.example.com/payment/success",
-  "commissionAmount": 15.00,
-  "paidAmount": 985.00,
-  "currency": "ETB",
-  "timestamp": {
-    "seconds": "1793104245",
-    "nanos": 0
-  }
+  "amount": 1,
+  "billRefNo": "D11G8Y7B36D",
+  "externalReference": "DK97WA56SV",
+  "merchantId": "40653544",
+  "merchantName": "Eaglelion",
+  "paymentChannel": "USSD_PUSH",
+  "status": "PAID",
+  "transactionId": "56641d83-d8e4-49d5-83a5-7c69e438fccf",
+  "paidAt": "09 Nov 2026, 1:57 PM",
+  "timestamp": "2026-11-09T10:57:21.220Z",
+  "customerName": "Kirk Deirdre King",
+  "customerPhoneNumber": "+251930795682",
+  "commissionAmount": 0,
+  "paidAmount": 1,
+  "redirectUrl": "https://google.com"
 }
-
 ```
 
 ### Failed Callback Example

@@ -82,6 +82,7 @@
                 "currency": "ETB",
                 "customerName": "test",
                 "customerPhoneNumber": "+251987654567",
+                  "tinNumber": "0012345678",
                 "items": [
                   {
                     "productId": "6812220726f547936d6c1976",
@@ -539,6 +540,11 @@
             "type": "string",
             "example": "+251987654567"
           },
+          "tinNumber": {
+            "type": "string",
+            "description": "The Tax Identification Number (TIN) of the merchant initiating the transaction. Used for tax reporting and merchant verification purposes.",
+            "example": "0012345678"
+          },
           "callbackURL": {
             "type": "string",
             "example": "https://example.com/start_pay_callback"
@@ -603,6 +609,7 @@
           "currency",
           "customerName",
           "customerPhoneNumber",
+          "tinNumber",
           "items",
           "api_secret"
         ]
