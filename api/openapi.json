@@ -609,7 +609,6 @@
           "currency",
           "customerName",
           "customerPhoneNumber",
-          "tinNumber",
           "items",
           "api_secret"
         ]
